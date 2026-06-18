@@ -1,0 +1,87 @@
+# Image Manifest
+
+Total content screenshots: 83
+
+- `images/01-fortigate-overview-and-network-topology/01.png` - FortiGate Overview and Network Topology, screenshot 1
+- `images/01-fortigate-overview-and-network-topology/02.png` - FortiGate Overview and Network Topology, screenshot 2
+- `images/02-user-management-and-rbac/01.png` - User Management and RBAC, screenshot 1
+- `images/02-user-management-and-rbac/02.png` - User Management and RBAC, screenshot 2
+- `images/02-user-management-and-rbac/03.png` - User Management and RBAC, screenshot 3
+- `images/02-user-management-and-rbac/04.png` - User Management and RBAC, screenshot 4
+- `images/02-user-management-and-rbac/05.png` - User Management and RBAC, screenshot 5
+- `images/02-user-management-and-rbac/06.png` - User Management and RBAC, screenshot 6
+- `images/02-user-management-and-rbac/07.png` - User Management and RBAC, screenshot 7
+- `images/02-user-management-and-rbac/08.png` - User Management and RBAC, screenshot 8
+- `images/03-password-policy/01.png` - Password Policy, screenshot 1
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/01.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 1
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/02.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 2
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/03.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 3
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/04.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 4
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/05.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 5
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/06.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 6
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/07.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 7
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/08.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 8
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/09.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 9
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/10.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 10
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/11.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 11
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/12.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 12
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/13.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 13
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/14.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 14
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/15.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 15
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/16.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 16
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/17.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 17
+- `images/04-ssl-vpn-tunnel-mode-with-ldap-users/18.png` - SSL VPN Tunnel Mode with LDAP Users, screenshot 18
+- `images/05-ssl-vpn-web-mode/01.png` - SSL VPN Web Mode, screenshot 1
+- `images/05-ssl-vpn-web-mode/02.png` - SSL VPN Web Mode, screenshot 2
+- `images/05-ssl-vpn-web-mode/03.png` - SSL VPN Web Mode, screenshot 3
+- `images/05-ssl-vpn-web-mode/04.png` - SSL VPN Web Mode, screenshot 4
+- `images/05-ssl-vpn-web-mode/05.png` - SSL VPN Web Mode, screenshot 5
+- `images/05-ssl-vpn-web-mode/06.png` - SSL VPN Web Mode, screenshot 6
+- `images/05-ssl-vpn-web-mode/07.png` - SSL VPN Web Mode, screenshot 7
+- `images/05-ssl-vpn-web-mode/08.png` - SSL VPN Web Mode, screenshot 8
+- `images/05-ssl-vpn-web-mode/09.png` - SSL VPN Web Mode, screenshot 9
+- `images/06-virtual-ip-and-iis-portal-publishing/01.png` - Virtual IP and IIS Portal Publishing, screenshot 1
+- `images/06-virtual-ip-and-iis-portal-publishing/02.png` - Virtual IP and IIS Portal Publishing, screenshot 2
+- `images/06-virtual-ip-and-iis-portal-publishing/03.png` - Virtual IP and IIS Portal Publishing, screenshot 3
+- `images/06-virtual-ip-and-iis-portal-publishing/04.png` - Virtual IP and IIS Portal Publishing, screenshot 4
+- `images/06-virtual-ip-and-iis-portal-publishing/05.png` - Virtual IP and IIS Portal Publishing, screenshot 5
+- `images/07-site-to-site-ipsec-vpn/01.png` - Site-to-Site IPsec VPN, screenshot 1
+- `images/07-site-to-site-ipsec-vpn/02.png` - Site-to-Site IPsec VPN, screenshot 2
+- `images/07-site-to-site-ipsec-vpn/03.png` - Site-to-Site IPsec VPN, screenshot 3
+- `images/07-site-to-site-ipsec-vpn/04.png` - Site-to-Site IPsec VPN, screenshot 4
+- `images/07-site-to-site-ipsec-vpn/05.png` - Site-to-Site IPsec VPN, screenshot 5
+- `images/07-site-to-site-ipsec-vpn/06.png` - Site-to-Site IPsec VPN, screenshot 6
+- `images/07-site-to-site-ipsec-vpn/07.png` - Site-to-Site IPsec VPN, screenshot 7
+- `images/07-site-to-site-ipsec-vpn/08.png` - Site-to-Site IPsec VPN, screenshot 8
+- `images/07-site-to-site-ipsec-vpn/09.png` - Site-to-Site IPsec VPN, screenshot 9
+- `images/08-ssl-tls-inspection/01.png` - SSL/TLS Inspection, screenshot 1
+- `images/08-ssl-tls-inspection/02.png` - SSL/TLS Inspection, screenshot 2
+- `images/09-web-filter/01.png` - Web Filter, screenshot 1
+- `images/09-web-filter/02.png` - Web Filter, screenshot 2
+- `images/09-web-filter/03.png` - Web Filter, screenshot 3
+- `images/09-web-filter/04.png` - Web Filter, screenshot 4
+- `images/09-web-filter/05.png` - Web Filter, screenshot 5
+- `images/09-web-filter/06.png` - Web Filter, screenshot 6
+- `images/09-web-filter/07.png` - Web Filter, screenshot 7
+- `images/09-web-filter/08.png` - Web Filter, screenshot 8
+- `images/09-web-filter/09.png` - Web Filter, screenshot 9
+- `images/10-dns-filter/01.png` - DNS Filter, screenshot 1
+- `images/10-dns-filter/02.png` - DNS Filter, screenshot 2
+- `images/10-dns-filter/03.png` - DNS Filter, screenshot 3
+- `images/10-dns-filter/04.png` - DNS Filter, screenshot 4
+- `images/10-dns-filter/05.png` - DNS Filter, screenshot 5
+- `images/11-antivirus-profile/01.png` - Antivirus Profile, screenshot 1
+- `images/11-antivirus-profile/02.png` - Antivirus Profile, screenshot 2
+- `images/11-antivirus-profile/03.png` - Antivirus Profile, screenshot 3
+- `images/11-antivirus-profile/04.png` - Antivirus Profile, screenshot 4
+- `images/12-ips-profile/01.png` - IPS Profile, screenshot 1
+- `images/12-ips-profile/02.png` - IPS Profile, screenshot 2
+- `images/12-ips-profile/03.png` - IPS Profile, screenshot 3
+- `images/12-ips-profile/04.png` - IPS Profile, screenshot 4
+- `images/13-application-control-and-quarantine/01.png` - Application Control and Quarantine, screenshot 1
+- `images/13-application-control-and-quarantine/02.png` - Application Control and Quarantine, screenshot 2
+- `images/13-application-control-and-quarantine/03.png` - Application Control and Quarantine, screenshot 3
+- `images/13-application-control-and-quarantine/04.png` - Application Control and Quarantine, screenshot 4
+- `images/13-application-control-and-quarantine/05.png` - Application Control and Quarantine, screenshot 5
+- `images/13-application-control-and-quarantine/06.png` - Application Control and Quarantine, screenshot 6
+- `images/13-application-control-and-quarantine/07.png` - Application Control and Quarantine, screenshot 7
