@@ -168,21 +168,17 @@ After signing in with `Special_Admin`, several parts of the interface are review
 
 > Permission validation should be performed from the restricted account itself. Reviewing the profile as a super administrator proves how it was configured, but logging in as the delegated account proves what that operator can really see and use.
 
-![Restricted system menu](images/02-user-management-and-rbac/09.png)
-
-<p><sub><strong>Screenshot 007 - Restricted System Menu:</strong> The System area is visible in the limited administrator session as part of the access review.</sub></p>
-
-![Limited administrator dashboard](images/02-user-management-and-rbac/04.png)
-
-<p><sub><strong>Screenshot 008 - Limited Administrator Dashboard:</strong> The custom account sees a reduced navigation set after authentication.</sub></p>
-
 ![Special administrator session](images/02-user-management-and-rbac/03.png)
 
-<p><sub><strong>Screenshot 009 - Special Administrator Session:</strong> The header identifies the active `Special_Admin` session while the restricted menu is reviewed.</sub></p>
+<p><sub><strong>Screenshot 007 - Special Administrator Session:</strong> The header identifies the active `Special_Admin` account used to validate the delegated profile.</sub></p>
 
-![Special administrator identity](images/02-user-management-and-rbac/10.png)
+![Restricted system menu](images/02-user-management-and-rbac/09.png)
 
-<p><sub><strong>Screenshot 010 - Special Administrator Identity:</strong> The FortiGate header confirms that the restricted review is being performed through the named `Special_Admin` account.</sub></p>
+<p><sub><strong>Screenshot 008 - Restricted System Menu:</strong> The limited session can open the approved System area while unavailable functions remain outside the delegated profile.</sub></p>
+
+![Restricted security profiles menu](images/02-user-management-and-rbac/04.png)
+
+<p><sub><strong>Screenshot 009 - Restricted Security Profiles Menu:</strong> The delegated account sees only the permitted SSL/SSH Inspection entry under Security Profiles.</sub></p>
 
 ### Create a new IT administrator group and profile
 
@@ -192,7 +188,7 @@ The IT team is represented by an `IT_Group` administrator profile. Its permissio
 
 ![IT read-only profile](images/02-user-management-and-rbac/06.png)
 
-<p><sub><strong>Screenshot 011 - IT Read-Only Profile:</strong> The `IT_Group` profile is configured with view-only access to the required operational sections.</sub></p>
+<p><sub><strong>Screenshot 010 - IT Read-Only Profile:</strong> The `IT_Group` profile is configured with view-only access to the required operational sections.</sub></p>
 
 ### Create three IT administrators
 
@@ -202,7 +198,7 @@ Three named administrator accounts are created and assigned to `IT_Group`. Reusi
 
 ![IT administrator accounts](images/02-user-management-and-rbac/05.png)
 
-<p><sub><strong>Screenshot 012 - IT Administrator Membership:</strong> Three IT administrator accounts are listed with the shared `IT_Group` profile.</sub></p>
+<p><sub><strong>Screenshot 011 - IT Administrator Membership:</strong> Three IT administrator accounts are listed with the shared `IT_Group` profile.</sub></p>
 
 ### Validate read-only IT access
 
@@ -212,11 +208,11 @@ An IT administrator session is opened to verify the final result. Only the appro
 
 ![IT administrator menu](images/02-user-management-and-rbac/07.png)
 
-<p><sub><strong>Screenshot 013 - IT Navigation Restrictions:</strong> The limited menu shows which operational areas remain available to the IT administrator.</sub></p>
+<p><sub><strong>Screenshot 012 - IT Navigation Restrictions:</strong> The limited menu shows which operational areas remain available to the IT administrator.</sub></p>
 
 ![Read-only IT view](images/02-user-management-and-rbac/08.png)
 
-<p><sub><strong>Screenshot 014 - Read-Only IT Session:</strong> The restricted interface confirms that the IT account can view approved information without unrestricted write access.</sub></p>
+<p><sub><strong>Screenshot 013 - Read-Only IT Session:</strong> The restricted interface confirms that the IT account can view approved information without unrestricted write access.</sub></p>
 
 ---------
 
@@ -243,7 +239,7 @@ The password-policy page is opened under the FortiGate system settings and the s
 
 ![FortiGate password policy](images/03-password-policy/01.png)
 
-<p><sub><strong>Screenshot 015 - Password Complexity Policy:</strong> FortiGate enforces the configured length and character requirements for both administrator passwords and IPsec pre-shared keys.</sub></p>
+<p><sub><strong>Screenshot 014 - Password Complexity Policy:</strong> FortiGate enforces the configured length and character requirements for both administrator passwords and IPsec pre-shared keys.</sub></p>
 
 ---------
 
@@ -272,7 +268,7 @@ The `LDAP_Sales` security group and three users are created on AtlasAD before Fo
 
 ![LDAP Sales users](images/04-ssl-vpn-tunnel-mode-with-ldap-users/01.png)
 
-<p><sub><strong>Screenshot 016 - LDAP Sales Group:</strong> Three Active Directory users are shown as members of the `LDAP_Sales` group.</sub></p>
+<p><sub><strong>Screenshot 015 - LDAP Sales Group:</strong> Three Active Directory users are shown as members of the `LDAP_Sales` group.</sub></p>
 
 ### Connect FortiGate to Active Directory
 
@@ -284,7 +280,7 @@ The lab uses regular LDAP on port `389` with secure connection disabled. This pr
 
 ![LDAP server configuration](images/04-ssl-vpn-tunnel-mode-with-ldap-users/02.png)
 
-<p><sub><strong>Screenshot 017 - FortiGate LDAP Connection:</strong> The AtlasAD LDAP object contains the server, bind, and directory settings and reports a successful connection.</sub></p>
+<p><sub><strong>Screenshot 016 - FortiGate LDAP Connection:</strong> The AtlasAD LDAP object contains the server, bind, and directory settings and reports a successful connection.</sub></p>
 
 ### Start the remote-user import
 
@@ -292,13 +288,17 @@ FortiGate is instructed to create remote LDAP users instead of local firewall us
 
 > A remote user object does not copy the user's password into FortiGate. The firewall keeps a reference to the external identity source and asks LDAP to validate the credentials when the user authenticates.
 
-![Remote LDAP user type](images/04-ssl-vpn-tunnel-mode-with-ldap-users/04.png)
+![Remote LDAP user type](images/04-ssl-vpn-tunnel-mode-with-ldap-users/03.png)
 
-<p><sub><strong>Screenshot 018 - Remote LDAP User Selection:</strong> The user creation wizard is set to import remote LDAP identities.</sub></p>
+<p><sub><strong>Screenshot 017 - Remote LDAP User Selection:</strong> The user creation wizard is set to import remote LDAP identities.</sub></p>
 
-![LDAP server selection](images/04-ssl-vpn-tunnel-mode-with-ldap-users/03.png)
+![LDAP server selection](images/04-ssl-vpn-tunnel-mode-with-ldap-users/04.png)
 
-<p><sub><strong>Screenshot 019 - LDAP Directory Selection:</strong> The configured AtlasAD LDAP server is selected as the source for imported users.</sub></p>
+<p><sub><strong>Screenshot 018 - LDAP Directory Selection:</strong> The configured AtlasAD LDAP server is selected as the source for imported users.</sub></p>
+
+![Imported LDAP users](images/04-ssl-vpn-tunnel-mode-with-ldap-users/05.png)
+
+<p><sub><strong>Screenshot 020 - Imported LDAP Identities:</strong> The selected directory accounts appear in the FortiGate user definitions.</sub></p>
 
 ### Select and verify the LDAP users
 
@@ -308,11 +308,7 @@ The required Sales accounts are selected from the LDAP directory and then review
 
 ![LDAP user selection](images/04-ssl-vpn-tunnel-mode-with-ldap-users/06.png)
 
-<p><sub><strong>Screenshot 020 - Active Directory User Selection:</strong> The Sales users are selected from the LDAP directory for import into FortiGate.</sub></p>
-
-![Imported LDAP users](images/04-ssl-vpn-tunnel-mode-with-ldap-users/05.png)
-
-<p><sub><strong>Screenshot 021 - Imported LDAP Identities:</strong> The selected directory accounts appear in the FortiGate user definitions.</sub></p>
+<p><sub><strong>Screenshot 019 - Active Directory User Selection:</strong> The Sales users are selected from the LDAP directory for import into FortiGate.</sub></p>
 
 ### Configure the Tunnel Mode portal
 
@@ -324,15 +320,15 @@ Split tunneling sends only traffic for approved internal networks through FortiG
 
 ![SSL VPN tunnel portal](images/04-ssl-vpn-tunnel-mode-with-ldap-users/07.png)
 
-<p><sub><strong>Screenshot 022 - Tunnel Portal Configuration:</strong> Tunnel Mode, split tunneling, and the client address pool are configured for remote users.</sub></p>
+<p><sub><strong>Screenshot 021 - Tunnel Portal Configuration:</strong> Tunnel Mode, split tunneling, and the client address pool are configured for remote users.</sub></p>
 
 ![SSL VPN routing addresses](images/04-ssl-vpn-tunnel-mode-with-ldap-users/08.png)
 
-<p><sub><strong>Screenshot 023 - Split-Tunnel Destination:</strong> The internal routing address and VPN client pool are selected for the tunnel portal.</sub></p>
+<p><sub><strong>Screenshot 022 - Split-Tunnel Destination:</strong> The internal routing address and VPN client pool are selected for the tunnel portal.</sub></p>
 
 ![SSL VPN portal list](images/04-ssl-vpn-tunnel-mode-with-ldap-users/09.png)
 
-<p><sub><strong>Screenshot 024 - Completed Tunnel Portal:</strong> The new SSL VPN portal appears in the portal list after its settings are saved.</sub></p>
+<p><sub><strong>Screenshot 023 - Completed Tunnel Portal:</strong> The new SSL VPN portal appears in the portal list after its settings are saved.</sub></p>
 
 ### Create the FortiGate LDAP user group
 
@@ -340,9 +336,9 @@ The imported Active Directory group is associated with a FortiGate user group. T
 
 > FortiGate user groups are policy objects, while the actual member list remains in Active Directory. This arrangement keeps access decisions identity-aware without forcing the firewall administrator to recreate the directory structure manually.
 
-![FortiGate LDAP user group](images/04-ssl-vpn-tunnel-mode-with-ldap-users/11.png)
+![FortiGate LDAP user group](images/04-ssl-vpn-tunnel-mode-with-ldap-users/10.png)
 
-<p><sub><strong>Screenshot 025 - LDAP Group Mapping:</strong> The FortiGate user group references the remote AtlasAD LDAP group.</sub></p>
+<p><sub><strong>Screenshot 025 - LDAP Group Mapping:</strong> The `LDAP_Users` FortiGate group is associated with the remote AtlasAD LDAP source.</sub></p>
 
 ### Configure SSL VPN listening settings
 
@@ -350,9 +346,9 @@ SSL VPN is bound to the WAN interface and port `443`, which defines where remote
 
 > The factory certificate can encrypt a lab connection, but it does not prove the identity of a production VPN service to external users. A public deployment should use a trusted certificate matching the VPN FQDN and should normally combine directory credentials with MFA.
 
-![SSL VPN listening settings](images/04-ssl-vpn-tunnel-mode-with-ldap-users/10.png)
+![SSL VPN listening settings](images/04-ssl-vpn-tunnel-mode-with-ldap-users/11.png)
 
-<p><sub><strong>Screenshot 026 - SSL VPN Listener and Certificate:</strong> The WAN interface, HTTPS port, and laboratory server certificate are selected for SSL VPN access.</sub></p>
+<p><sub><strong>Screenshot 024 - SSL VPN Listener and Certificate:</strong> The WAN interface, HTTPS port, and laboratory server certificate are selected for SSL VPN access.</sub></p>
 
 ### Map LDAP users to the tunnel portal
 
@@ -360,13 +356,13 @@ Authentication and portal mapping connects the LDAP group to the Tunnel Mode por
 
 > Portal mapping is the decision point between identity and connection behavior. Without a matching rule, valid LDAP credentials may still receive the wrong portal or no usable remote-access configuration.
 
-![SSL VPN authentication rule](images/04-ssl-vpn-tunnel-mode-with-ldap-users/13.png)
+![SSL VPN mapping overview](images/04-ssl-vpn-tunnel-mode-with-ldap-users/12.png)
 
-<p><sub><strong>Screenshot 027 - SSL VPN Authentication Rule:</strong> The LDAP user group is included in the SSL VPN authentication configuration.</sub></p>
+<p><sub><strong>Screenshot 026 - SSL VPN Mapping Overview:</strong> The authentication table shows `LDAP_Users` mapped to the Tunnel Mode portal and provides the control used to create a new mapping.</sub></p>
 
-![Tunnel portal mapping](images/04-ssl-vpn-tunnel-mode-with-ldap-users/12.png)
+![Tunnel portal mapping](images/04-ssl-vpn-tunnel-mode-with-ldap-users/13.png)
 
-<p><sub><strong>Screenshot 028 - Tunnel Portal Mapping:</strong> The LDAP group is mapped to the configured SSL VPN Tunnel Mode portal.</sub></p>
+<p><sub><strong>Screenshot 027 - Tunnel Portal Mapping Details:</strong> The authentication rule associates the `LDAP_Users` group with the configured `tunnel-access` portal.</sub></p>
 
 ### Allow RDP from the VPN to the workstation
 
@@ -376,21 +372,20 @@ The firewall policy accepts traffic from the SSL VPN tunnel interface toward the
 
 ![SSL VPN RDP policy](images/04-ssl-vpn-tunnel-mode-with-ldap-users/14.png)
 
-<p><sub><strong>Screenshot 029 - SSL VPN RDP Policy:</strong> The tunnel-to-LAN policy allows authenticated LDAP VPN users to reach the internal workstation with RDP.</sub></p>
+<p><sub><strong>Screenshot 028 - SSL VPN RDP Policy:</strong> The tunnel-to-LAN policy allows authenticated LDAP VPN users to reach the internal workstation with RDP.</sub></p>
 
 ### Configure FortiClient on the remote computer
 
 FortiClient is installed on the external computer and a connection profile is created with the FortiGate WAN gateway and HTTPS port. The profile tells the client where the VPN listener is located; the user then selects that profile and enters an Active Directory username and password for LDAP validation.
 
 > FortiClient is the endpoint component that creates the encrypted tunnel and installs the assigned route on the remote computer. The client configuration must match the FortiGate listener, otherwise the request never reaches the authentication and portal rules.
+![FortiClient LDAP login](images/04-ssl-vpn-tunnel-mode-with-ldap-users/15.png)
+
+<p><sub><strong>Screenshot 030 - FortiClient LDAP Authentication:</strong> An Active Directory user signs in to the newly configured VPN connection.</sub></p>
 
 ![FortiClient VPN profile](images/04-ssl-vpn-tunnel-mode-with-ldap-users/16.png)
 
-<p><sub><strong>Screenshot 030 - FortiClient VPN Profile:</strong> The remote FortiGate gateway and SSL VPN connection settings are entered in FortiClient.</sub></p>
-
-![FortiClient LDAP login](images/04-ssl-vpn-tunnel-mode-with-ldap-users/15.png)
-
-<p><sub><strong>Screenshot 031 - FortiClient LDAP Authentication:</strong> An Active Directory user signs in to the newly configured VPN connection.</sub></p>
+<p><sub><strong>Screenshot 029 - FortiClient VPN Profile:</strong> The remote FortiGate gateway and SSL VPN connection settings are entered in FortiClient.</sub></p>
 
 ### Validate the tunnel and RDP session
 
@@ -400,11 +395,11 @@ FortiClient shows an active tunnel and an assigned VPN address, proving that the
 
 ![FortiClient connected](images/04-ssl-vpn-tunnel-mode-with-ldap-users/18.png)
 
-<p><sub><strong>Screenshot 032 - Active FortiClient Tunnel:</strong> FortiClient reports a connected SSL VPN session and assigned tunnel address.</sub></p>
+<p><sub><strong>Screenshot 031 - Active FortiClient Tunnel:</strong> FortiClient reports a connected SSL VPN session and assigned tunnel address.</sub></p>
 
 ![Internal workstation over RDP](images/04-ssl-vpn-tunnel-mode-with-ldap-users/17.png)
 
-<p><sub><strong>Screenshot 033 - RDP Through SSL VPN:</strong> The remote user reaches the internal Windows workstation through the encrypted VPN tunnel.</sub></p>
+<p><sub><strong>Screenshot 032 - RDP Through SSL VPN:</strong> The remote user reaches the internal Windows workstation through the encrypted VPN tunnel.</sub></p>
 
 ### Understand how RDP and VPN work together
 
@@ -438,7 +433,7 @@ The `LDAP_HR` group and three directory users are prepared in Active Directory. 
 
 ![LDAP HR users](images/05-ssl-vpn-web-mode/01.png)
 
-<p><sub><strong>Screenshot 034 - LDAP HR Group:</strong> Three HR users are shown as members of the Active Directory `LDAP_HR` group.</sub></p>
+<p><sub><strong>Screenshot 033 - LDAP HR Group:</strong> Three HR users are shown as members of the Active Directory `LDAP_HR` group.</sub></p>
 
 ### Enable Web Mode on the portal
 
@@ -448,7 +443,7 @@ The SSL VPN portal is configured for Web Mode. Instead of receiving tunnel route
 
 ![SSL VPN Web Mode portal](images/05-ssl-vpn-web-mode/02.png)
 
-<p><sub><strong>Screenshot 035 - Web Mode Portal:</strong> Web Mode is enabled in the SSL VPN portal configuration.</sub></p>
+<p><sub><strong>Screenshot 034 - Web Mode Portal:</strong> Web Mode is enabled in the SSL VPN portal configuration.</sub></p>
 
 ### Create the RDP bookmark
 
@@ -458,27 +453,26 @@ An RDP bookmark stores the internal workstation address, TCP port `3389`, and co
 
 ![RDP bookmark](images/05-ssl-vpn-web-mode/03.png)
 
-<p><sub><strong>Screenshot 036 - RDP Web Bookmark:</strong> The internal workstation is published as an RDP bookmark inside the SSL VPN portal.</sub></p>
-
+<p><sub><strong>Screenshot 035 - RDP Web Bookmark:</strong> The internal workstation is published as an RDP bookmark inside the SSL VPN portal.</sub></p>
 ### Import and group the HR identities
 
-The Active Directory HR group is added to FortiGate and associated with a FortiGate user group. This gives the Web Mode authentication rule a local policy object while preserving Active Directory as the membership authority.
+The `LDAP_HR` object referenced by the portal mapping is backed by the AtlasAD LDAP source. Documenting the group association shows that FortiGate uses a directory-managed identity set rather than maintaining separate local VPN passwords.
 
 > Keeping HR membership in the directory allows access to follow normal account administration. Removing a user from the approved LDAP group should remove the identity match without editing every VPN rule individually.
 
-![FortiGate HR group](images/05-ssl-vpn-web-mode/05.png)
+![FortiGate HR group](images/05-ssl-vpn-web-mode/04.png)
 
-<p><sub><strong>Screenshot 037 - FortiGate HR User Group:</strong> The remote `LDAP_HR` group is associated with a FortiGate user group.</sub></p>
+<p><sub><strong>Screenshot 037 - FortiGate HR User Group:</strong> The FortiGate `LDAP_HR` group references AtlasAD as its remote identity source.</sub></p>
 
 ### Map HR users to the web portal
 
-The HR group is mapped to the Web Mode portal under the SSL VPN authentication rules. After LDAP validates the credentials, FortiGate evaluates group membership and delivers the portal containing the RDP bookmark to matching HR users.
+The existing HR directory-backed group is mapped to the Web Mode portal under the SSL VPN authentication rules. After LDAP validates the credentials, FortiGate evaluates group membership and delivers the portal containing the RDP bookmark to matching HR users.
 
 > Authentication proves the credentials, but authorization decides which portal the identity receives. This separation allows two valid domain users to receive different remote-access capabilities based on group membership.
 
-![Web Mode portal mapping](images/05-ssl-vpn-web-mode/04.png)
+![Web Mode portal mapping](images/05-ssl-vpn-web-mode/05.png)
 
-<p><sub><strong>Screenshot 038 - HR Portal Mapping:</strong> The LDAP HR group is directed to the configured SSL VPN Web Mode portal.</sub></p>
+<p><sub><strong>Screenshot 036 - HR Portal Mapping:</strong> The `LDAP_HR` group is directed to the configured `web-access` SSL VPN portal.</sub></p>
 
 ### Create the Web Mode firewall policy
 
@@ -488,7 +482,7 @@ The firewall policy accepts traffic from the SSL VPN interface toward the intern
 
 ![Web Mode firewall policy](images/05-ssl-vpn-web-mode/06.png)
 
-<p><sub><strong>Screenshot 039 - Web Mode Access Policy:</strong> SSL VPN Web Mode users are allowed to reach the internal workstation through the LAN interface.</sub></p>
+<p><sub><strong>Screenshot 038 - Web Mode Access Policy:</strong> SSL VPN Web Mode users are allowed to reach the internal workstation through the LAN interface.</sub></p>
 
 ### Validate browser authentication and RDP
 
@@ -498,15 +492,15 @@ An HR user opens the FortiGate HTTPS portal and signs in with directory credenti
 
 ![SSL VPN portal login](images/05-ssl-vpn-web-mode/07.png)
 
-<p><sub><strong>Screenshot 040 - SSL VPN Portal Login:</strong> The browser requests LDAP user credentials for the FortiGate web portal.</sub></p>
+<p><sub><strong>Screenshot 039 - SSL VPN Portal Login:</strong> The browser requests LDAP user credentials for the FortiGate web portal.</sub></p>
 
 ![SSL VPN web portal](images/05-ssl-vpn-web-mode/08.png)
 
-<p><sub><strong>Screenshot 041 - Authenticated Web Portal:</strong> The logged-in HR user sees the published remote-access resource.</sub></p>
+<p><sub><strong>Screenshot 040 - Authenticated Web Portal:</strong> The logged-in HR user sees the published remote-access resource.</sub></p>
 
 ![Web Mode RDP desktop](images/05-ssl-vpn-web-mode/09.png)
 
-<p><sub><strong>Screenshot 042 - Browser-Based RDP Session:</strong> The internal Windows desktop opens through the FortiGate SSL VPN web portal.</sub></p>
+<p><sub><strong>Screenshot 041 - Browser-Based RDP Session:</strong> The internal Windows desktop opens through the FortiGate SSL VPN web portal.</sub></p>
 
 ---------
 
@@ -534,7 +528,7 @@ The Web Server (IIS) role is installed on AtlasAD to provide an internal website
 
 ![IIS role selection](images/06-virtual-ip-and-iis-portal-publishing/01.png)
 
-<p><sub><strong>Screenshot 043 - IIS Role Installation:</strong> The Web Server role is selected on the internal Atlas Windows server.</sub></p>
+<p><sub><strong>Screenshot 042 - IIS Role Installation:</strong> The Web Server role is selected on the internal Atlas Windows server.</sub></p>
 
 ### Understand and use the loopback address
 
@@ -544,7 +538,7 @@ The default IIS page is opened through `127.0.0.1` on the Atlas server. The IPv4
 
 ![Local IIS validation](images/06-virtual-ip-and-iis-portal-publishing/02.png)
 
-<p><sub><strong>Screenshot 044 - Local IIS Validation:</strong> The IIS default page responds on the server's loopback address.</sub></p>
+<p><sub><strong>Screenshot 043 - Local IIS Validation:</strong> The IIS default page responds on the server's loopback address.</sub></p>
 
 ### Create the Virtual IP object
 
@@ -554,7 +548,7 @@ The Virtual IP object maps the FortiGate WAN address to the private Atlas server
 
 ![FortiGate Virtual IP](images/06-virtual-ip-and-iis-portal-publishing/03.png)
 
-<p><sub><strong>Screenshot 045 - Destination NAT Object:</strong> The Virtual IP maps external traffic to the internal IIS server.</sub></p>
+<p><sub><strong>Screenshot 044 - Destination NAT Object:</strong> The Virtual IP maps external traffic to the internal IIS server.</sub></p>
 
 ### Permit inbound web traffic
 
@@ -564,7 +558,7 @@ A WAN-to-LAN policy uses the website VIP as its destination and allows the confi
 
 ![Inbound IIS policy](images/06-virtual-ip-and-iis-portal-publishing/04.png)
 
-<p><sub><strong>Screenshot 046 - Inbound Web Policy:</strong> The WAN-to-LAN rule references the website VIP and permits the configured web-access services.</sub></p>
+<p><sub><strong>Screenshot 045 - Inbound Web Policy:</strong> The WAN-to-LAN rule references the website VIP and permits the configured web-access services.</sub></p>
 
 ### Validate the published portal externally
 
@@ -574,7 +568,7 @@ The IIS page is opened from outside the server by using the FortiGate external a
 
 ![External IIS portal](images/06-virtual-ip-and-iis-portal-publishing/05.png)
 
-<p><sub><strong>Screenshot 047 - External IIS Access:</strong> The internal IIS portal is reachable through the FortiGate WAN address and destination NAT configuration.</sub></p>
+<p><sub><strong>Screenshot 046 - External IIS Access:</strong> The internal IIS portal is reachable through the FortiGate WAN address and destination NAT configuration.</sub></p>
 
 ---------
 
@@ -601,9 +595,9 @@ The IPsec wizard is opened and the FortiGate-to-FortiGate site-to-site option is
 
 > Phase 1 establishes and authenticates the secure control channel between the peers. Phase 2 negotiates the IPsec security associations that protect the selected network traffic carried through the tunnel.
 
-![IPsec tunnel wizard](images/07-site-to-site-ipsec-vpn/02.png)
+![IPsec tunnel wizard](images/07-site-to-site-ipsec-vpn/01.png)
 
-<p><sub><strong>Screenshot 048 - Site-to-Site IPsec Wizard:</strong> A FortiGate-to-FortiGate VPN is selected for the two-site connection.</sub></p>
+<p><sub><strong>Screenshot 047 - Site-to-Site IPsec Wizard:</strong> A FortiGate-to-FortiGate VPN is selected for the two-site connection.</sub></p>
 
 ### Configure the remote gateway and PSK
 
@@ -611,9 +605,9 @@ The Tel Aviv WAN address `13.82.92.101` is entered as the remote gateway, `Port1
 
 > A PSK is a shared authentication secret, not an encryption algorithm. In production it should be long, randomly generated, stored securely, and rotated according to policy because disclosure would weaken peer authentication.
 
-![IPsec peer settings](images/07-site-to-site-ipsec-vpn/01.png)
+![IPsec peer settings](images/07-site-to-site-ipsec-vpn/02.png)
 
-<p><sub><strong>Screenshot 049 - IPsec Peer and PSK Settings:</strong> The remote FortiGate WAN address, outgoing interface, and pre-shared key are configured.</sub></p>
+<p><sub><strong>Screenshot 048 - IPsec Peer and PSK Settings:</strong> The remote FortiGate WAN address, outgoing interface, and pre-shared key are configured.</sub></p>
 
 ### Define the protected networks
 
@@ -621,9 +615,9 @@ The New York networks `10.90.1.0/24` and `10.90.11.0/24` are paired with the Tel
 
 > The selectors must be mirrored correctly on both FortiGate devices. If one peer defines different local or remote subnets, Phase 1 may succeed while Phase 2 or actual data traffic still fails.
 
-![IPsec network selectors](images/07-site-to-site-ipsec-vpn/04.png)
+![IPsec network selectors](images/07-site-to-site-ipsec-vpn/03.png)
 
-<p><sub><strong>Screenshot 050 - IPsec Network Selectors:</strong> The New York and Tel Aviv private subnets are entered as the local and remote protected networks.</sub></p>
+<p><sub><strong>Screenshot 049 - IPsec Network Selectors:</strong> The New York and Tel Aviv private subnets are entered as the local and remote protected networks.</sub></p>
 
 ### Confirm the tunnel state
 
@@ -631,9 +625,9 @@ After both peers complete their configuration, the IPsec monitor is opened to re
 
 > Tunnel status proves successful negotiation, not application permission. Cross-site ping or RDP can still fail because of firewall policy, routing, host firewalls, or an unavailable destination service.
 
-![IPsec VPN monitor](images/07-site-to-site-ipsec-vpn/03.png)
+![IPsec VPN monitor](images/07-site-to-site-ipsec-vpn/04.png)
 
-<p><sub><strong>Screenshot 051 - IPsec Tunnel Monitor:</strong> The site-to-site VPN appears in the FortiGate monitor with its negotiated tunnel state.</sub></p>
+<p><sub><strong>Screenshot 050 - IPsec Tunnel Monitor:</strong> The site-to-site VPN appears in the FortiGate monitor with its negotiated tunnel state.</sub></p>
 
 ### Limit New York-to-Tel Aviv traffic to ping
 
@@ -643,7 +637,7 @@ The New York-to-Tel Aviv policy is restricted to the `PING` service. ICMP echo t
 
 ![IPsec ping policy](images/07-site-to-site-ipsec-vpn/05.png)
 
-<p><sub><strong>Screenshot 052 - New York to Tel Aviv Ping Policy:</strong> The directional IPsec policy explicitly allows the PING service.</sub></p>
+<p><sub><strong>Screenshot 051 - New York to Tel Aviv Ping Policy:</strong> The directional IPsec policy explicitly allows the PING service.</sub></p>
 
 ### Review the Tel Aviv-to-New York RDP rule
 
@@ -653,7 +647,7 @@ The reverse policy is intended to permit Tel Aviv users to reach New York system
 
 ![IPsec RDP policy review](images/07-site-to-site-ipsec-vpn/06.png)
 
-<p><sub><strong>Screenshot 053 - Tel Aviv to New York RDP Rule:</strong> RDP is selected in the service picker, while the policy field still shows `ALL` and therefore requires a final correction.</sub></p>
+<p><sub><strong>Screenshot 052 - Tel Aviv to New York RDP Rule:</strong> RDP is selected in the service picker, while the policy field still shows `ALL` and therefore requires a final correction.</sub></p>
 
 ### Validate cross-site access
 
@@ -663,7 +657,7 @@ The two sides test the intended services after the tunnel is established. The co
 
 ![IPsec traffic validation](images/07-site-to-site-ipsec-vpn/07.png)
 
-<p><sub><strong>Screenshot 054 - Cross-Site Service Validation:</strong> Command-line and RDP tests are performed after the IPsec policies are applied.</sub></p>
+<p><sub><strong>Screenshot 053 - Cross-Site Service Validation:</strong> Command-line and RDP tests are performed after the IPsec policies are applied.</sub></p>
 
 ### Compare validation from the remote site
 
@@ -673,11 +667,11 @@ The remote-side screenshots provide the opposite perspective of the same VPN. Th
 
 ![Remote-site RDP validation](images/07-site-to-site-ipsec-vpn/08.png)
 
-<p><sub><strong>Screenshot 055 - Remote-Site RDP Test:</strong> The peer-side workstation attempts the RDP connection allowed by the directional VPN policy.</sub></p>
+<p><sub><strong>Screenshot 054 - Remote-Site RDP Test:</strong> The peer-side workstation attempts the RDP connection allowed by the directional VPN policy.</sub></p>
 
 ![Blocked remote-site ping](images/07-site-to-site-ipsec-vpn/09.png)
 
-<p><sub><strong>Screenshot 056 - Blocked Reverse Ping:</strong> ICMP requests time out from the direction where the policy does not permit ping.</sub></p>
+<p><sub><strong>Screenshot 055 - Blocked Reverse Ping:</strong> ICMP requests time out from the direction where the policy does not permit ping.</sub></p>
 
 ---------
 
@@ -704,7 +698,7 @@ The `Office_To_Internet_Inspection` profile is configured for full inspection us
 
 ![Full SSL inspection profile](images/08-ssl-tls-inspection/01.png)
 
-<p><sub><strong>Screenshot 057 - Full SSL/TLS Inspection Profile:</strong> The outbound inspection profile is configured for deep inspection with the FortiGate CA certificate.</sub></p>
+<p><sub><strong>Screenshot 056 - Full SSL/TLS Inspection Profile:</strong> The outbound inspection profile is configured for deep inspection with the FortiGate CA certificate.</sub></p>
 
 ### Apply inspection to outbound traffic
 
@@ -714,7 +708,7 @@ The profile is attached to the firewall policy carrying traffic from the office 
 
 ![SSL inspection applied](images/08-ssl-tls-inspection/02.png)
 
-<p><sub><strong>Screenshot 058 - SSL/TLS Inspection Policy:</strong> The full-inspection profile is selected on the outbound firewall rule.</sub></p>
+<p><sub><strong>Screenshot 057 - SSL/TLS Inspection Policy:</strong> The full-inspection profile is selected on the outbound firewall rule.</sub></p>
 
 ---------
 
@@ -743,7 +737,7 @@ The Web Filter page is opened and `Office_Web_Filter` is created with proxy-base
 
 ![Proxy web filter profile](images/09-web-filter/01.png)
 
-<p><sub><strong>Screenshot 059 - Office Web Filter Profile:</strong> `Office_Web_Filter` is created with proxy-based feature settings.</sub></p>
+<p><sub><strong>Screenshot 058 - Office Web Filter Profile:</strong> `Office_Web_Filter` is created with proxy-based feature settings.</sub></p>
 
 ### Open the static URL filter
 
@@ -753,7 +747,7 @@ The Static URL Filter area is opened and enabled so the administrator can define
 
 ![Static URL filter](images/09-web-filter/02.png)
 
-<p><sub><strong>Screenshot 060 - Static URL Filter Configuration:</strong> The profile's static URL filtering area is opened for a custom block rule.</sub></p>
+<p><sub><strong>Screenshot 059 - Static URL Filter Configuration:</strong> The profile's static URL filtering area is opened for a custom block rule.</sub></p>
 
 ### Block Reddit and its subdomains
 
@@ -763,7 +757,7 @@ The wildcard expression covers `reddit.com` and its subdomains and is assigned a
 
 ![Reddit wildcard rule](images/09-web-filter/03.png)
 
-<p><sub><strong>Screenshot 061 - Reddit Wildcard Block:</strong> The Reddit domain pattern is added with a block action.</sub></p>
+<p><sub><strong>Screenshot 060 - Reddit Wildcard Block:</strong> The Reddit domain pattern is added with a block action.</sub></p>
 
 ### Require authentication for Shopping sites
 
@@ -773,7 +767,7 @@ The Shopping category action is changed from a general category decision to auth
 
 ![Shopping category authentication](images/09-web-filter/04.png)
 
-<p><sub><strong>Screenshot 062 - Shopping Category Authentication:</strong> Shopping traffic is configured to require authentication rather than being universally allowed.</sub></p>
+<p><sub><strong>Screenshot 061 - Shopping Category Authentication:</strong> Shopping traffic is configured to require authentication rather than being universally allowed.</sub></p>
 
 ### Select the authorized user group
 
@@ -783,7 +777,7 @@ The approved user group is selected for the Shopping category override. FortiGat
 
 ![Shopping authorization group](images/09-web-filter/05.png)
 
-<p><sub><strong>Screenshot 063 - Shopping Access Group:</strong> The approved identity group is selected for authenticated Shopping access.</sub></p>
+<p><sub><strong>Screenshot 062 - Shopping Access Group:</strong> The approved identity group is selected for authenticated Shopping access.</sub></p>
 
 ### Attach the web filter to the outbound policy
 
@@ -793,7 +787,7 @@ The approved user group is selected for the Shopping category override. FortiGat
 
 ![Web filter policy attachment](images/09-web-filter/06.png)
 
-<p><sub><strong>Screenshot 064 - Web Filter Policy Attachment:</strong> The new web filter profile is enabled on outbound traffic.</sub></p>
+<p><sub><strong>Screenshot 063 - Web Filter Policy Attachment:</strong> The new web filter profile is enabled on outbound traffic.</sub></p>
 
 ### Validate the Reddit block
 
@@ -803,7 +797,7 @@ The workstation attempts to reach Reddit and cannot complete normal access after
 
 ![Reddit access blocked](images/09-web-filter/07.png)
 
-<p><sub><strong>Screenshot 065 - Reddit Client Block Result:</strong> The workstation is unable to open Reddit after the wildcard rule is applied.</sub></p>
+<p><sub><strong>Screenshot 064 - Reddit Client Block Result:</strong> The workstation is unable to open Reddit after the wildcard rule is applied.</sub></p>
 
 ### Validate authenticated category access
 
@@ -813,7 +807,7 @@ FortiGate presents its authentication page when the workstation requests a site 
 
 ![Web filter authentication prompt](images/09-web-filter/08.png)
 
-<p><sub><strong>Screenshot 066 - Web Filter Authentication Prompt:</strong> The client is asked to authenticate before receiving the configured category override.</sub></p>
+<p><sub><strong>Screenshot 065 - Web Filter Authentication Prompt:</strong> The client is asked to authenticate before receiving the configured category override.</sub></p>
 
 ### Review web-filter logs
 
@@ -823,7 +817,7 @@ The Web Filter logs are reviewed after the client tests. The entries show the re
 
 ![Web filter logs](images/09-web-filter/09.png)
 
-<p><sub><strong>Screenshot 067 - Web Filter Logs:</strong> FortiGate records the tested web requests and their filtering actions.</sub></p>
+<p><sub><strong>Screenshot 066 - Web Filter Logs:</strong> FortiGate records the tested web requests and their filtering actions.</sub></p>
 
 ---------
 
@@ -851,7 +845,7 @@ The `Office_DNS_Filter` profile enables FortiGuard-based blocking for known botn
 
 ![DNS filter profile](images/10-dns-filter/01.png)
 
-<p><sub><strong>Screenshot 068 - Office DNS Filter Profile:</strong> Botnet and C&C domain protection is enabled in the DNS filter profile.</sub></p>
+<p><sub><strong>Screenshot 067 - Office DNS Filter Profile:</strong> Botnet and C&C domain protection is enabled in the DNS filter profile.</sub></p>
 
 ### Create a controlled domain-blocking example
 
@@ -861,7 +855,7 @@ Facebook is added as a wildcard static domain-filter example and assigned the re
 
 ![Static DNS domain rule](images/10-dns-filter/02.png)
 
-<p><sub><strong>Screenshot 069 - Static Domain Filter Entry:</strong> A wildcard Facebook domain rule is configured with a redirect-to-block-portal action.</sub></p>
+<p><sub><strong>Screenshot 068 - Static Domain Filter Entry:</strong> A wildcard Facebook domain rule is configured with a redirect-to-block-portal action.</sub></p>
 
 ### Apply the DNS filter to outbound traffic
 
@@ -871,7 +865,7 @@ Facebook is added as a wildcard static domain-filter example and assigned the re
 
 ![DNS filter applied](images/10-dns-filter/03.png)
 
-<p><sub><strong>Screenshot 070 - DNS Filter Policy Attachment:</strong> `Office_DNS_Filter` is enabled on the outbound firewall policy.</sub></p>
+<p><sub><strong>Screenshot 069 - DNS Filter Policy Attachment:</strong> `Office_DNS_Filter` is enabled on the outbound firewall policy.</sub></p>
 
 ### Validate the client block result
 
@@ -881,7 +875,7 @@ The workstation attempts to open the controlled domain and receives the configur
 
 ![DNS filter client warning](images/10-dns-filter/04.png)
 
-<p><sub><strong>Screenshot 071 - DNS Filter Client Result:</strong> The browser displays a blocked-page warning for the controlled domain-filter test.</sub></p>
+<p><sub><strong>Screenshot 070 - DNS Filter Client Result:</strong> The browser displays a blocked-page warning for the controlled domain-filter test.</sub></p>
 
 ### Review DNS-filter logs
 
@@ -891,7 +885,7 @@ The DNS Filter log is reviewed to confirm that FortiGate processed the workstati
 
 ![DNS filter logs](images/10-dns-filter/05.png)
 
-<p><sub><strong>Screenshot 072 - DNS Filter Logs:</strong> FortiGate records the blocked domain request generated by the workstation.</sub></p>
+<p><sub><strong>Screenshot 071 - DNS Filter Logs:</strong> FortiGate records the blocked domain request generated by the workstation.</sub></p>
 
 ---------
 
@@ -919,7 +913,7 @@ The `Office_AV_Profile` profile is set to flow-based inspection and scanning is 
 
 ![Antivirus profile](images/11-antivirus-profile/01.png)
 
-<p><sub><strong>Screenshot 073 - Office Antivirus Profile:</strong> Flow-based antivirus scanning and blocking are enabled for the supported protocols.</sub></p>
+<p><sub><strong>Screenshot 072 - Office Antivirus Profile:</strong> Flow-based antivirus scanning and blocking are enabled for the supported protocols.</sub></p>
 
 ### Apply antivirus to outbound traffic
 
@@ -929,7 +923,7 @@ The `Office_AV_Profile` profile is set to flow-based inspection and scanning is 
 
 ![Antivirus policy attachment](images/11-antivirus-profile/02.png)
 
-<p><sub><strong>Screenshot 074 - Antivirus Policy Attachment:</strong> `Office_AV_Profile` is selected on the outbound firewall policy.</sub></p>
+<p><sub><strong>Screenshot 073 - Antivirus Policy Attachment:</strong> `Office_AV_Profile` is selected on the outbound firewall policy.</sub></p>
 
 ### Test with a safe security sample
 
@@ -939,7 +933,7 @@ The workstation requests a safe WildFire test sample and receives a high-securit
 
 ![Antivirus test block](images/11-antivirus-profile/03.png)
 
-<p><sub><strong>Screenshot 075 - Antivirus Test-Sample Block:</strong> FortiGate prevents the workstation from downloading the safe vendor test sample.</sub></p>
+<p><sub><strong>Screenshot 074 - Antivirus Test-Sample Block:</strong> FortiGate prevents the workstation from downloading the safe vendor test sample.</sub></p>
 
 ### Confirm the antivirus event in logs
 
@@ -949,7 +943,7 @@ The Antivirus log is opened after the client test and the blocked sample events 
 
 ![Antivirus logs](images/11-antivirus-profile/04.png)
 
-<p><sub><strong>Screenshot 076 - Antivirus Security Logs:</strong> FortiGate records the blocked test downloads and the antivirus action that handled them.</sub></p>
+<p><sub><strong>Screenshot 075 - Antivirus Security Logs:</strong> FortiGate records the blocked test downloads and the antivirus action that handled them.</sub></p>
 
 ---------
 
@@ -977,7 +971,7 @@ The `Office_IPS_Profile` sensor is created under Security Profiles and botnet C&
 
 ![IPS sensor](images/12-ips-profile/01.png)
 
-<p><sub><strong>Screenshot 077 - Office IPS Sensor:</strong> The custom IPS profile is created with botnet command-and-control blocking enabled.</sub></p>
+<p><sub><strong>Screenshot 076 - Office IPS Sensor:</strong> The custom IPS profile is created with botnet command-and-control blocking enabled.</sub></p>
 
 ### Apply IPS to the outbound policy
 
@@ -987,7 +981,7 @@ The `Office_IPS_Profile` sensor is created under Security Profiles and botnet C&
 
 ![IPS policy attachment](images/12-ips-profile/02.png)
 
-<p><sub><strong>Screenshot 078 - IPS Policy Attachment:</strong> `Office_IPS_Profile` is enabled on the outbound traffic rule.</sub></p>
+<p><sub><strong>Screenshot 077 - IPS Policy Attachment:</strong> `Office_IPS_Profile` is enabled on the outbound traffic rule.</sub></p>
 
 ### Generate and observe a controlled IPS test
 
@@ -997,7 +991,7 @@ The workstation attempts to reach the controlled test destination and the browse
 
 ![IPS client timeout](images/12-ips-profile/03.png)
 
-<p><sub><strong>Screenshot 079 - IPS Client-Side Timeout:</strong> The test connection does not complete after the IPS profile is applied.</sub></p>
+<p><sub><strong>Screenshot 078 - IPS Client-Side Timeout:</strong> The test connection does not complete after the IPS profile is applied.</sub></p>
 
 ### Confirm the IPS drop in logs
 
@@ -1007,7 +1001,7 @@ The IPS log records the `Bloody.Gang` signature and a dropped action for the con
 
 ![IPS logs](images/12-ips-profile/04.png)
 
-<p><sub><strong>Screenshot 080 - IPS Detection Logs:</strong> FortiGate records and drops the controlled traffic that matched the IPS signature.</sub></p>
+<p><sub><strong>Screenshot 079 - IPS Detection Logs:</strong> FortiGate records and drops the controlled traffic that matched the IPS signature.</sub></p>
 
 ---------
 
@@ -1036,7 +1030,7 @@ The `Office_Application_Control` profile is created and the remote-access applic
 
 ![Application Control profile](images/13-application-control-and-quarantine/01.png)
 
-<p><sub><strong>Screenshot 081 - Office Application Control Profile:</strong> The remote-access application category is selected for blocking.</sub></p>
+<p><sub><strong>Screenshot 080 - Office Application Control Profile:</strong> The remote-access application category is selected for blocking.</sub></p>
 
 ### Apply Application Control to outbound traffic
 
@@ -1046,7 +1040,7 @@ The new Application Control profile is selected on the outbound firewall policy.
 
 ![Application Control policy](images/13-application-control-and-quarantine/02.png)
 
-<p><sub><strong>Screenshot 082 - Application Control Policy Attachment:</strong> The custom Application Control profile is enabled on the outbound rule.</sub></p>
+<p><sub><strong>Screenshot 081 - Application Control Policy Attachment:</strong> The custom Application Control profile is enabled on the outbound rule.</sub></p>
 
 ### Test TeamViewer access from the workstation
 
@@ -1056,7 +1050,7 @@ The workstation attempts to reach TeamViewer and receives a browser security fai
 
 ![TeamViewer client block](images/13-application-control-and-quarantine/03.png)
 
-<p><sub><strong>Screenshot 083 - TeamViewer Client Block:</strong> The workstation cannot establish the TeamViewer-related connection after Application Control is enabled.</sub></p>
+<p><sub><strong>Screenshot 082 - TeamViewer Client Block:</strong> The workstation cannot establish the TeamViewer-related connection after Application Control is enabled.</sub></p>
 
 ### Confirm the application block in logs
 
@@ -1066,7 +1060,7 @@ The Application Control logs are reviewed after the workstation test. The entrie
 
 ![Application Control logs](images/13-application-control-and-quarantine/04.png)
 
-<p><sub><strong>Screenshot 084 - TeamViewer Application Logs:</strong> FortiGate identifies TeamViewer traffic and records a block action.</sub></p>
+<p><sub><strong>Screenshot 083 - TeamViewer Application Logs:</strong> FortiGate identifies TeamViewer traffic and records a block action.</sub></p>
 
 ### Configure a two-day quarantine action
 
@@ -1076,7 +1070,7 @@ An Application Control override is added for TeamViewer with a two-day quarantin
 
 ![Application quarantine override](images/13-application-control-and-quarantine/05.png)
 
-<p><sub><strong>Screenshot 085 - Two-Day Quarantine Override:</strong> TeamViewer activity is configured to trigger a quarantine lasting two days.</sub></p>
+<p><sub><strong>Screenshot 084 - Two-Day Quarantine Override:</strong> TeamViewer activity is configured to trigger a quarantine lasting two days.</sub></p>
 
 ### Trigger the quarantine condition
 
@@ -1086,7 +1080,7 @@ The TeamViewer-related activity is generated again from the workstation after th
 
 ![TeamViewer quarantine test](images/13-application-control-and-quarantine/06.png)
 
-<p><sub><strong>Screenshot 086 - Quarantine Trigger Test:</strong> The workstation repeats the TeamViewer test after the quarantine override is configured.</sub></p>
+<p><sub><strong>Screenshot 085 - Quarantine Trigger Test:</strong> The workstation repeats the TeamViewer test after the quarantine override is configured.</sub></p>
 
 ### Validate the quarantined user
 
@@ -1096,7 +1090,7 @@ The FortiGate User & Devices dashboard is opened and the resulting banned entry 
 
 ![FortiGate quarantine dashboard](images/13-application-control-and-quarantine/07.png)
 
-<p><sub><strong>Screenshot 087 - Quarantine Dashboard:</strong> FortiGate displays the quarantined user or source entry after the Application Control test.</sub></p>
+<p><sub><strong>Screenshot 086 - Quarantine Dashboard:</strong> FortiGate displays the quarantined user or source entry after the Application Control test.</sub></p>
 
 ## Testing and Verification
 
@@ -1163,7 +1157,5 @@ FortiGate-Firewall-Configuration/
 
 ## Notes
 
-- This repository documents an isolated educational lab and should not be treated as a production configuration export.
-- Screenshot 001 is the original cover background and is preserved in the manifest even though it is not required in the guided walkthrough.
 - The complete image inventory and global numbering are available in [IMAGE_MANIFEST.md](IMAGE_MANIFEST.md).
 - Additional implementation notes are available in [docs/notes.md](docs/notes.md).
