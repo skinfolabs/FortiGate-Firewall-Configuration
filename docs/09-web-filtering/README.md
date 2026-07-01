@@ -2,11 +2,6 @@
 
 This chapter documents FortiGate Web Filtering with static URL blocks, category-based authentication, client testing, and log review. It shows how a profile becomes meaningful only after it is attached to the active outbound policy and validated from a workstation.
 
----
-
-## Purpose
-
-Control web access by URL and category, then validate enforcement with both browser behavior and FortiGate log evidence.
 
 ## Technical Context
 
@@ -34,20 +29,6 @@ The lab objective includes the Job Search category, a wildcard block for Reddit,
 | Category authentication | A web-filter action that asks the user to authenticate before category access is allowed. |
 | Proxy mode | Inspection mode where FortiGate handles the web request as an intermediary for deeper control. |
 
-## Steps Covered
-
-| Step | Description |
-|------|-------------|
-| Create the proxy-based web filter profile | The Web Filter page is opened and Office Web Filter is created with proxy based feature settings. |
-| Open the static URL filter | The Static URL Filter area is opened and enabled so the administrator can define an explicit hostname pattern independently of the FortiGuard category assigned to the site. |
-| Block Reddit and its subdomains | The wildcard expression covers reddit.com and its subdomains and is assigned a block action. |
-| Require authentication for Shopping sites | The Shopping category action is changed from a general category decision to authentication. |
-| Select the authorized user group | The approved user group is selected for the Shopping category override. |
-| Attach the web filter to the outbound policy | Office Web Filter is attached to the office to internet firewall rule. |
-| Validate the Reddit block | The workstation attempts to reach Reddit and cannot complete normal access after the wildcard rule is applied. |
-| Validate authenticated category access | FortiGate presents its authentication page when the workstation requests a site in the controlled Shopping category. |
-| Review web-filter logs | The Web Filter logs are reviewed after the client tests. |
-
 ---
 
 ## Detailed Walkthrough
@@ -62,7 +43,6 @@ The Web Filter page is opened and `Office_Web_Filter` is created with proxy-base
 
 <p><sub><strong>Screenshot 058 - Office Web Filter Profile:</strong> `Office_Web_Filter` is created with proxy-based feature settings.</sub></p>
 
-
 ---
 
 ### Step 02 - Open the static URL filter
@@ -74,7 +54,6 @@ The Static URL Filter area is opened and enabled so the administrator can define
 ![Static URL filter](../../images/09-web-filter/02.png)
 
 <p><sub><strong>Screenshot 059 - Static URL Filter Configuration:</strong> The profile's static URL filtering area is opened for a custom block rule.</sub></p>
-
 
 ---
 
@@ -88,7 +67,6 @@ The wildcard expression covers `reddit.com` and its subdomains and is assigned a
 
 <p><sub><strong>Screenshot 060 - Reddit Wildcard Block:</strong> The Reddit domain pattern is added with a block action.</sub></p>
 
-
 ---
 
 ### Step 04 - Require authentication for Shopping sites
@@ -100,7 +78,6 @@ The Shopping category action is changed from a general category decision to auth
 ![Shopping category authentication](../../images/09-web-filter/04.png)
 
 <p><sub><strong>Screenshot 061 - Shopping Category Authentication:</strong> Shopping traffic is configured to require authentication rather than being universally allowed.</sub></p>
-
 
 ---
 
@@ -114,7 +91,6 @@ The approved user group is selected for the Shopping category override. FortiGat
 
 <p><sub><strong>Screenshot 062 - Shopping Access Group:</strong> The approved identity group is selected for authenticated Shopping access.</sub></p>
 
-
 ---
 
 ### Step 06 - Attach the web filter to the outbound policy
@@ -126,7 +102,6 @@ The approved user group is selected for the Shopping category override. FortiGat
 ![Web filter policy attachment](../../images/09-web-filter/06.png)
 
 <p><sub><strong>Screenshot 063 - Web Filter Policy Attachment:</strong> The new web filter profile is enabled on outbound traffic.</sub></p>
-
 
 ---
 
@@ -140,7 +115,6 @@ The workstation attempts to reach Reddit and cannot complete normal access after
 
 <p><sub><strong>Screenshot 064 - Reddit Client Block Result:</strong> The workstation is unable to open Reddit after the wildcard rule is applied.</sub></p>
 
-
 ---
 
 ### Step 08 - Validate authenticated category access
@@ -152,7 +126,6 @@ FortiGate presents its authentication page when the workstation requests a site 
 ![Web filter authentication prompt](../../images/09-web-filter/08.png)
 
 <p><sub><strong>Screenshot 065 - Web Filter Authentication Prompt:</strong> The client is asked to authenticate before receiving the configured category override.</sub></p>
-
 
 ---
 
@@ -166,14 +139,11 @@ The Web Filter logs are reviewed after the client tests. The entries show the re
 
 <p><sub><strong>Screenshot 066 - Web Filter Logs:</strong> FortiGate records the tested web requests and their filtering actions.</sub></p>
 
-
 ---
 
-## Validation
+## Validation and Summary
 
 Validation combines configuration, workstation behavior, authentication prompt, and FortiGate logs. This confirms that the policy is applied to real client traffic rather than only existing as an unused profile.
-
-## Chapter Summary
 
 This chapter completes the web-filtering workflow. The screenshots connect the configured profile to user-facing browser behavior and FortiGate logs, which makes the enforcement result traceable.
 
@@ -181,19 +151,20 @@ This chapter completes the web-filtering workflow. The screenshots connect the c
 
 ## Project Chapters
 
-| Chapter | Description |
-|---------|-------------|
-| [Project Overview](../../README.md) | Main project overview, network topology, scope, and outcomes |
-| [Administrator Access and Role-Based Control](../01-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
-| [FortiGate Password Policy Hardening](../02-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
-| [LDAP Integration and SSL VPN Tunnel Mode](../03-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
-| [SSL VPN Web Mode](../04-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
-| [IIS Publishing with Destination NAT](../05-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
-| [Site-to-Site IPsec VPN](../06-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
-| [Full SSL/TLS Inspection](../07-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
-| [Web Filtering](../08-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
-| [DNS Filtering](../09-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
-| [Antivirus Inspection](../10-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
-| [Intrusion Prevention](../11-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
-| [Application Control and Quarantine](../12-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
-| [Final Summary](../13-final-summary/README.md) | Validation results, recommendations, limitations, and portfolio outcomes |
+| # | Chapter | Description |
+|---|---------|-------------|
+| 0 | [Project Overview](../../README.md) | Main project overview, objectives, tools, and skills |
+| 1 | [Topology and Lab Environment](../01-topology-and-lab-environment/README.md) | Topology, lab roles, addressing, trust boundaries, and traffic flow |
+| 2 | [Administrator Access and Role-Based Control](../02-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
+| 3 | [FortiGate Password Policy Hardening](../03-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
+| 4 | [LDAP Integration and SSL VPN Tunnel Mode](../04-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
+| 5 | [SSL VPN Web Mode](../05-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
+| 6 | [IIS Publishing with Destination NAT](../06-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
+| 7 | [Site-to-Site IPsec VPN](../07-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
+| 8 | [Full SSL/TLS Inspection](../08-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
+| 9 | [Web Filtering](../09-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
+| 10 | [DNS Filtering](../10-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
+| 11 | [Antivirus Inspection](../11-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
+| 12 | [Intrusion Prevention](../12-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
+| 13 | [Application Control and Quarantine](../13-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
+| 14 | [Final Summary](../14-final-summary/README.md) | Validation summary, production recommendations, skills, and project closure |

@@ -2,11 +2,6 @@
 
 This chapter documents Application Control and quarantine response for unauthorized remote-access behavior. It uses TeamViewer as the controlled application example and follows the path from profile creation to block logs and a temporary quarantine entry.
 
----
-
-## Purpose
-
-Identify remote-access application behavior, block it through Application Control, and demonstrate a quarantine response for repeated prohibited activity.
 
 ## Technical Context
 
@@ -34,18 +29,6 @@ The initial profile blocks the remote-access application category and records th
 | Quarantine | A containment action that temporarily restricts a source after prohibited activity is detected. |
 | Override | A profile-specific action that changes how a matched application is handled. |
 
-## Steps Covered
-
-| Step | Description |
-|------|-------------|
-| Create the Application Control profile | The Office Application Control profile is created and the remote access application category containing TeamViewer is set to block. |
-| Apply Application Control to outbound traffic | The new Application Control profile is selected on the outbound firewall policy. |
-| Test TeamViewer access from the workstation | The workstation attempts to reach TeamViewer and receives a browser security failure instead of establishing normal access. |
-| Confirm the application block in logs | The Application Control logs are reviewed after the workstation test. |
-| Configure a two-day quarantine action | An Application Control override is added for TeamViewer with a two day quarantine period. |
-| Trigger the quarantine condition | The TeamViewer related activity is generated again from the workstation after the override is saved. |
-| Validate the quarantined user | The FortiGate User & Devices dashboard is opened and the resulting banned entry is visible after the repeated TeamViewer test. |
-
 ---
 
 ## Detailed Walkthrough
@@ -60,7 +43,6 @@ The `Office_Application_Control` profile is created and the remote-access applic
 
 <p><sub><strong>Screenshot 080 - Office Application Control Profile:</strong> The remote-access application category is selected for blocking.</sub></p>
 
-
 ---
 
 ### Step 02 - Apply Application Control to outbound traffic
@@ -72,7 +54,6 @@ The new Application Control profile is selected on the outbound firewall policy.
 ![Application Control policy](../../images/13-application-control-and-quarantine/02.png)
 
 <p><sub><strong>Screenshot 081 - Application Control Policy Attachment:</strong> The custom Application Control profile is enabled on the outbound rule.</sub></p>
-
 
 ---
 
@@ -86,7 +67,6 @@ The workstation attempts to reach TeamViewer and receives a browser security fai
 
 <p><sub><strong>Screenshot 082 - TeamViewer Client Block:</strong> The workstation cannot establish the TeamViewer-related connection after Application Control is enabled.</sub></p>
 
-
 ---
 
 ### Step 04 - Confirm the application block in logs
@@ -98,7 +78,6 @@ The Application Control logs are reviewed after the workstation test. The entrie
 ![Application Control logs](../../images/13-application-control-and-quarantine/04.png)
 
 <p><sub><strong>Screenshot 083 - TeamViewer Application Logs:</strong> FortiGate identifies TeamViewer traffic and records a block action.</sub></p>
-
 
 ---
 
@@ -112,7 +91,6 @@ An Application Control override is added for TeamViewer with a two-day quarantin
 
 <p><sub><strong>Screenshot 084 - Two-Day Quarantine Override:</strong> TeamViewer activity is configured to trigger a quarantine lasting two days.</sub></p>
 
-
 ---
 
 ### Step 06 - Trigger the quarantine condition
@@ -124,7 +102,6 @@ The TeamViewer-related activity is generated again from the workstation after th
 ![TeamViewer quarantine test](../../images/13-application-control-and-quarantine/06.png)
 
 <p><sub><strong>Screenshot 085 - Quarantine Trigger Test:</strong> The workstation repeats the TeamViewer test after the quarantine override is configured.</sub></p>
-
 
 ---
 
@@ -138,14 +115,11 @@ The FortiGate User & Devices dashboard is opened and the resulting banned entry 
 
 <p><sub><strong>Screenshot 086 - Quarantine Dashboard:</strong> FortiGate displays the quarantined user or source entry after the Application Control test.</sub></p>
 
-
 ---
 
-## Validation
+## Validation and Summary
 
 Validation combines the TeamViewer client failure, Application Control logs, quarantine override, repeated trigger test, and the FortiGate quarantine dashboard. This documents both the application block and the longer containment response.
-
-## Chapter Summary
 
 This chapter completes the Application Control and quarantine workflow. The screenshots validate the block decision, log evidence, quarantine override, repeated trigger, and final User & Devices quarantine view.
 
@@ -153,19 +127,20 @@ This chapter completes the Application Control and quarantine workflow. The scre
 
 ## Project Chapters
 
-| Chapter | Description |
-|---------|-------------|
-| [Project Overview](../../README.md) | Main project overview, network topology, scope, and outcomes |
-| [Administrator Access and Role-Based Control](../01-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
-| [FortiGate Password Policy Hardening](../02-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
-| [LDAP Integration and SSL VPN Tunnel Mode](../03-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
-| [SSL VPN Web Mode](../04-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
-| [IIS Publishing with Destination NAT](../05-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
-| [Site-to-Site IPsec VPN](../06-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
-| [Full SSL/TLS Inspection](../07-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
-| [Web Filtering](../08-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
-| [DNS Filtering](../09-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
-| [Antivirus Inspection](../10-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
-| [Intrusion Prevention](../11-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
-| [Application Control and Quarantine](../12-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
-| [Final Summary](../13-final-summary/README.md) | Validation results, recommendations, limitations, and portfolio outcomes |
+| # | Chapter | Description |
+|---|---------|-------------|
+| 0 | [Project Overview](../../README.md) | Main project overview, objectives, tools, and skills |
+| 1 | [Topology and Lab Environment](../01-topology-and-lab-environment/README.md) | Topology, lab roles, addressing, trust boundaries, and traffic flow |
+| 2 | [Administrator Access and Role-Based Control](../02-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
+| 3 | [FortiGate Password Policy Hardening](../03-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
+| 4 | [LDAP Integration and SSL VPN Tunnel Mode](../04-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
+| 5 | [SSL VPN Web Mode](../05-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
+| 6 | [IIS Publishing with Destination NAT](../06-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
+| 7 | [Site-to-Site IPsec VPN](../07-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
+| 8 | [Full SSL/TLS Inspection](../08-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
+| 9 | [Web Filtering](../09-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
+| 10 | [DNS Filtering](../10-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
+| 11 | [Antivirus Inspection](../11-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
+| 12 | [Intrusion Prevention](../12-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
+| 13 | [Application Control and Quarantine](../13-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
+| 14 | [Final Summary](../14-final-summary/README.md) | Validation summary, production recommendations, skills, and project closure |

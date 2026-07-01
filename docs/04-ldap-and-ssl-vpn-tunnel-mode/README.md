@@ -2,11 +2,6 @@
 
 This chapter documents Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient setup, and restricted RDP validation. It connects identity, remote-access portal settings, firewall policy, and the final internal desktop test into one end-to-end workflow.
 
----
-
-## Purpose
-
-Use Active Directory as the identity source for FortiGate SSL VPN access and restrict tunnel users to the internal RDP path required by the lab.
 
 ## Technical Context
 
@@ -37,23 +32,6 @@ Production recommendation: the lab uses LDAP over port `389` with secure connect
 | Portal mapping | The FortiGate rule that connects a user group to a specific SSL VPN portal behavior. |
 | RDP | Remote Desktop Protocol, the internal service allowed through the restricted VPN policy in this lab. |
 
-## Steps Covered
-
-| Step | Description |
-|------|-------------|
-| Prepare the LDAP Sales group in Active Directory | The LDAP Sales security group and three users are created on AtlasAD before FortiGate is configured. |
-| Connect FortiGate to Active Directory | An LDAP server object is created with the AtlasAD address, port, domain components, and bind identity. |
-| Start the remote-user import | FortiGate is instructed to create remote LDAP users instead of local firewall users. |
-| Select and verify the LDAP users | The required Sales accounts are selected from the LDAP directory and then reviewed in FortiGate's user list. |
-| Configure the Tunnel Mode portal | The SSL VPN portal is configured for Tunnel Mode with split tunneling. |
-| Configure SSL VPN listening settings | SSL VPN is bound to the WAN interface and port 443 , which defines where remote FortiClient connections arrive. |
-| Create the FortiGate LDAP user group | The imported Active Directory group is associated with a FortiGate user group. |
-| Map LDAP users to the tunnel portal | Authentication and portal mapping connects the LDAP group to the Tunnel Mode portal. |
-| Allow RDP from the VPN to the workstation | The firewall policy accepts traffic from the SSL VPN tunnel interface toward the LAN workstation and limits the service to RDP. |
-| Configure FortiClient on the remote computer | FortiClient is installed on the external computer and a connection profile is created with the FortiGate WAN gateway and HTTPS port. |
-| Validate the tunnel and RDP session | FortiClient shows an active tunnel and an assigned VPN address, proving that the user authenticated and received the Tunnel Mode portal settings. |
-| Understand how RDP and VPN work together | RDP is Microsoft's remote display protocol and normally uses TCP port 3389 . |
-
 ---
 
 ## Detailed Walkthrough
@@ -68,7 +46,6 @@ The `LDAP_Sales` security group and three users are created on AtlasAD before Fo
 
 <p><sub><strong>Screenshot 015 - LDAP Sales Group:</strong> Three Active Directory users are shown as members of the `LDAP_Sales` group.</sub></p>
 
-
 ---
 
 ### Step 02 - Connect FortiGate to Active Directory
@@ -82,7 +59,6 @@ The lab uses regular LDAP on port `389` with secure connection disabled. This pr
 ![LDAP server configuration](../../images/04-ssl-vpn-tunnel-mode-with-ldap-users/02.png)
 
 <p><sub><strong>Screenshot 016 - FortiGate LDAP Connection:</strong> The AtlasAD LDAP object contains the server, bind, and directory settings and reports a successful connection.</sub></p>
-
 
 ---
 
@@ -100,7 +76,6 @@ FortiGate is instructed to create remote LDAP users instead of local firewall us
 
 <p><sub><strong>Screenshot 018 - LDAP Directory Selection:</strong> The configured AtlasAD LDAP server is selected as the source for imported users.</sub></p>
 
-
 ---
 
 ### Step 04 - Select and verify the LDAP users
@@ -116,7 +91,6 @@ The required Sales accounts are selected from the LDAP directory and then review
 ![Imported LDAP users](../../images/04-ssl-vpn-tunnel-mode-with-ldap-users/05.png)
 
 <p><sub><strong>Screenshot 020 - Imported LDAP Identities:</strong> The selected directory accounts appear in the FortiGate user definitions.</sub></p>
-
 
 ---
 
@@ -140,7 +114,6 @@ Split tunneling sends only traffic for approved internal networks through FortiG
 
 <p><sub><strong>Screenshot 023 - Completed Tunnel Portal:</strong> The new SSL VPN portal appears in the portal list after its settings are saved.</sub></p>
 
-
 ---
 
 ### Step 06 - Configure SSL VPN listening settings
@@ -153,7 +126,6 @@ SSL VPN is bound to the WAN interface and port `443`, which defines where remote
 
 <p><sub><strong>Screenshot 024 - SSL VPN Listener and Certificate:</strong> The WAN interface, HTTPS port, and laboratory server certificate are selected for SSL VPN access.</sub></p>
 
-
 ---
 
 ### Step 07 - Create the FortiGate LDAP user group
@@ -165,7 +137,6 @@ The imported Active Directory group is associated with a FortiGate user group. T
 ![FortiGate LDAP user group](../../images/04-ssl-vpn-tunnel-mode-with-ldap-users/10.png)
 
 <p><sub><strong>Screenshot 025 - LDAP Group Mapping:</strong> The `LDAP_Users` FortiGate group is associated with the remote AtlasAD LDAP source.</sub></p>
-
 
 ---
 
@@ -183,7 +154,6 @@ Authentication and portal mapping connects the LDAP group to the Tunnel Mode por
 
 <p><sub><strong>Screenshot 027 - Tunnel Portal Mapping Details:</strong> The authentication rule associates the `LDAP_Users` group with the configured `tunnel-access` portal.</sub></p>
 
-
 ---
 
 ### Step 09 - Allow RDP from the VPN to the workstation
@@ -195,7 +165,6 @@ The firewall policy accepts traffic from the SSL VPN tunnel interface toward the
 ![SSL VPN RDP policy](../../images/04-ssl-vpn-tunnel-mode-with-ldap-users/14.png)
 
 <p><sub><strong>Screenshot 028 - SSL VPN RDP Policy:</strong> The tunnel-to-LAN policy allows authenticated LDAP VPN users to reach the internal workstation with RDP.</sub></p>
-
 
 ---
 
@@ -213,7 +182,6 @@ FortiClient is installed on the external computer and a connection profile is cr
 
 <p><sub><strong>Screenshot 030 - FortiClient LDAP Authentication:</strong> An Active Directory user signs in to the newly configured VPN connection.</sub></p>
 
-
 ---
 
 ### Step 11 - Validate the tunnel and RDP session
@@ -230,7 +198,6 @@ FortiClient shows an active tunnel and an assigned VPN address, proving that the
 
 <p><sub><strong>Screenshot 032 - RDP Through SSL VPN:</strong> The remote user reaches the internal Windows workstation through the encrypted VPN tunnel.</sub></p>
 
-
 ---
 
 ### Step 12 - Understand how RDP and VPN work together
@@ -239,14 +206,11 @@ RDP is Microsoft's remote-display protocol and normally uses TCP port `3389`. It
 
 > Publishing RDP directly to the internet would expose the service to scanning and credential attacks. Placing RDP behind authenticated VPN access adds an encrypted and identity-controlled entry point before the workstation becomes reachable.
 
-
 ---
 
-## Validation
+## Validation and Summary
 
 Validation is end to end: LDAP connectivity succeeds, the group is mapped to a Tunnel Mode portal, FortiClient receives a tunnel address, and the user reaches the internal Windows desktop through RDP. This confirms identity, portal, route, firewall policy, and application reachability together.
-
-## Chapter Summary
 
 This chapter completes the Sales remote-access path. The evidence confirms that LDAP users can authenticate through FortiClient, receive Tunnel Mode settings, and reach the intended internal RDP destination through a restricted firewall policy.
 
@@ -254,19 +218,20 @@ This chapter completes the Sales remote-access path. The evidence confirms that 
 
 ## Project Chapters
 
-| Chapter | Description |
-|---------|-------------|
-| [Project Overview](../../README.md) | Main project overview, network topology, scope, and outcomes |
-| [Administrator Access and Role-Based Control](../01-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
-| [FortiGate Password Policy Hardening](../02-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
-| [LDAP Integration and SSL VPN Tunnel Mode](../03-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
-| [SSL VPN Web Mode](../04-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
-| [IIS Publishing with Destination NAT](../05-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
-| [Site-to-Site IPsec VPN](../06-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
-| [Full SSL/TLS Inspection](../07-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
-| [Web Filtering](../08-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
-| [DNS Filtering](../09-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
-| [Antivirus Inspection](../10-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
-| [Intrusion Prevention](../11-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
-| [Application Control and Quarantine](../12-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
-| [Final Summary](../13-final-summary/README.md) | Validation results, recommendations, limitations, and portfolio outcomes |
+| # | Chapter | Description |
+|---|---------|-------------|
+| 0 | [Project Overview](../../README.md) | Main project overview, objectives, tools, and skills |
+| 1 | [Topology and Lab Environment](../01-topology-and-lab-environment/README.md) | Topology, lab roles, addressing, trust boundaries, and traffic flow |
+| 2 | [Administrator Access and Role-Based Control](../02-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
+| 3 | [FortiGate Password Policy Hardening](../03-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
+| 4 | [LDAP Integration and SSL VPN Tunnel Mode](../04-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
+| 5 | [SSL VPN Web Mode](../05-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
+| 6 | [IIS Publishing with Destination NAT](../06-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
+| 7 | [Site-to-Site IPsec VPN](../07-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
+| 8 | [Full SSL/TLS Inspection](../08-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
+| 9 | [Web Filtering](../09-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
+| 10 | [DNS Filtering](../10-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
+| 11 | [Antivirus Inspection](../11-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
+| 12 | [Intrusion Prevention](../12-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
+| 13 | [Application Control and Quarantine](../13-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
+| 14 | [Final Summary](../14-final-summary/README.md) | Validation summary, production recommendations, skills, and project closure |

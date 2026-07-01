@@ -2,11 +2,6 @@
 
 This chapter documents SSL VPN Web Mode for a more focused browser-based remote-access workflow. HR users authenticate with LDAP credentials and receive a published RDP bookmark instead of a general routed tunnel.
 
----
-
-## Purpose
-
-Provide a narrower remote-access workflow where authenticated users receive a specific browser portal resource instead of a routed tunnel.
 
 ## Technical Context
 
@@ -33,18 +28,6 @@ The workflow deliberately repeats some identity steps from Tunnel Mode because H
 | Authorization | The decision that maps an authenticated identity to an allowed portal or resource. |
 | Portal policy | The access rule that permits the web portal session to reach the internal target. |
 
-## Steps Covered
-
-| Step | Description |
-|------|-------------|
-| Create the LDAP HR group and users | The LDAP HR group and three directory users are prepared in Active Directory. |
-| Enable Web Mode on the portal | The SSL VPN portal is configured for Web Mode. |
-| Create the RDP bookmark | An RDP bookmark stores the internal workstation address, TCP port 3389 , and connection security settings. |
-| Map HR users to the web portal | The HR directory backed group is mapped to the Web Mode portal under the SSL VPN authentication rules. |
-| Import and group the HR identities | The underlying LDAP HR object referenced by the portal mapping is backed by the AtlasAD LDAP source. |
-| Create the Web Mode firewall policy | The firewall policy accepts traffic from the SSL VPN interface toward the internal workstation. |
-| Validate browser authentication and RDP | An HR user opens the FortiGate HTTPS portal and signs in with directory credentials. |
-
 ---
 
 ## Detailed Walkthrough
@@ -59,7 +42,6 @@ The `LDAP_HR` group and three directory users are prepared in Active Directory. 
 
 <p><sub><strong>Screenshot 033 - LDAP HR Group:</strong> Three HR users are shown as members of the Active Directory `LDAP_HR` group.</sub></p>
 
-
 ---
 
 ### Step 02 - Enable Web Mode on the portal
@@ -71,7 +53,6 @@ The SSL VPN portal is configured for Web Mode. Instead of receiving tunnel route
 ![SSL VPN Web Mode portal](../../images/05-ssl-vpn-web-mode/02.png)
 
 <p><sub><strong>Screenshot 034 - Web Mode Portal:</strong> Web Mode is enabled in the SSL VPN portal configuration.</sub></p>
-
 
 ---
 
@@ -85,7 +66,6 @@ An RDP bookmark stores the internal workstation address, TCP port `3389`, and co
 
 <p><sub><strong>Screenshot 035 - RDP Web Bookmark:</strong> The internal workstation is published as an RDP bookmark inside the SSL VPN portal.</sub></p>
 
-
 ---
 
 ### Step 04 - Map HR users to the web portal
@@ -97,7 +77,6 @@ The HR directory-backed group is mapped to the Web Mode portal under the SSL VPN
 ![Web Mode portal mapping](../../images/05-ssl-vpn-web-mode/05.png)
 
 <p><sub><strong>Screenshot 036 - HR Portal Mapping:</strong> The `LDAP_HR` group is directed to the configured `web-access` SSL VPN portal.</sub></p>
-
 
 ---
 
@@ -111,7 +90,6 @@ The underlying `LDAP_HR` object referenced by the portal mapping is backed by th
 
 <p><sub><strong>Screenshot 037 - FortiGate HR User Group:</strong> The FortiGate `LDAP_HR` group references AtlasAD as its remote identity source.</sub></p>
 
-
 ---
 
 ### Step 06 - Create the Web Mode firewall policy
@@ -123,7 +101,6 @@ The firewall policy accepts traffic from the SSL VPN interface toward the intern
 ![Web Mode firewall policy](../../images/05-ssl-vpn-web-mode/06.png)
 
 <p><sub><strong>Screenshot 038 - Web Mode Access Policy:</strong> SSL VPN Web Mode users are allowed to reach the internal workstation through the LAN interface.</sub></p>
-
 
 ---
 
@@ -145,14 +122,11 @@ An HR user opens the FortiGate HTTPS portal and signs in with directory credenti
 
 <p><sub><strong>Screenshot 041 - Browser-Based RDP Session:</strong> The internal Windows desktop opens through the FortiGate SSL VPN web portal.</sub></p>
 
-
 ---
 
-## Validation
+## Validation and Summary
 
 Validation follows the user path: the browser portal accepts LDAP credentials, displays the RDP bookmark, and opens the internal Windows desktop. This confirms the Web Mode portal, HR group mapping, bookmark, and firewall policy are aligned.
-
-## Chapter Summary
 
 This chapter completes the HR Web Mode access path. The screenshots validate login, portal selection, bookmark visibility, and the browser-based RDP session to the internal workstation.
 
@@ -160,19 +134,20 @@ This chapter completes the HR Web Mode access path. The screenshots validate log
 
 ## Project Chapters
 
-| Chapter | Description |
-|---------|-------------|
-| [Project Overview](../../README.md) | Main project overview, network topology, scope, and outcomes |
-| [Administrator Access and Role-Based Control](../01-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
-| [FortiGate Password Policy Hardening](../02-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
-| [LDAP Integration and SSL VPN Tunnel Mode](../03-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
-| [SSL VPN Web Mode](../04-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
-| [IIS Publishing with Destination NAT](../05-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
-| [Site-to-Site IPsec VPN](../06-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
-| [Full SSL/TLS Inspection](../07-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
-| [Web Filtering](../08-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
-| [DNS Filtering](../09-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
-| [Antivirus Inspection](../10-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
-| [Intrusion Prevention](../11-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
-| [Application Control and Quarantine](../12-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
-| [Final Summary](../13-final-summary/README.md) | Validation results, recommendations, limitations, and portfolio outcomes |
+| # | Chapter | Description |
+|---|---------|-------------|
+| 0 | [Project Overview](../../README.md) | Main project overview, objectives, tools, and skills |
+| 1 | [Topology and Lab Environment](../01-topology-and-lab-environment/README.md) | Topology, lab roles, addressing, trust boundaries, and traffic flow |
+| 2 | [Administrator Access and Role-Based Control](../02-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
+| 3 | [FortiGate Password Policy Hardening](../03-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
+| 4 | [LDAP Integration and SSL VPN Tunnel Mode](../04-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
+| 5 | [SSL VPN Web Mode](../05-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
+| 6 | [IIS Publishing with Destination NAT](../06-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
+| 7 | [Site-to-Site IPsec VPN](../07-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
+| 8 | [Full SSL/TLS Inspection](../08-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
+| 9 | [Web Filtering](../09-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
+| 10 | [DNS Filtering](../10-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
+| 11 | [Antivirus Inspection](../11-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
+| 12 | [Intrusion Prevention](../12-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
+| 13 | [Application Control and Quarantine](../13-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
+| 14 | [Final Summary](../14-final-summary/README.md) | Validation summary, production recommendations, skills, and project closure |

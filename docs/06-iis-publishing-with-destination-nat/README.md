@@ -2,11 +2,6 @@
 
 This chapter documents internal IIS publishing through a FortiGate Virtual IP and an inbound firewall policy. It separates local web-server validation from external access through destination NAT.
 
----
-
-## Purpose
-
-Publish an internal IIS service through destination NAT while separating local service validation from external firewall-path validation.
 
 ## Technical Context
 
@@ -35,16 +30,6 @@ Production recommendation: IIS and Active Directory are placed on the same serve
 | Loopback test | A local test to confirm the web service works before testing the firewall path. |
 | Inbound policy | The firewall rule that allows traffic from WAN toward the internal published service. |
 
-## Steps Covered
-
-| Step | Description |
-|------|-------------|
-| Install IIS on the Atlas server | The Web Server (IIS) role is installed on AtlasAD to provide an internal website for the publishing exercise. |
-| Understand and use the loopback address | The default IIS page is opened through 127.0.0.1 on the Atlas server. |
-| Create the Virtual IP object | The Virtual IP object maps the FortiGate WAN address to the private Atlas server address. |
-| Permit inbound web traffic | A WAN to LAN policy uses the website VIP as its destination and allows the configured Web Access service group. |
-| Validate the published portal externally | The IIS page is opened from outside the server by using the FortiGate external address. |
-
 ---
 
 ## Detailed Walkthrough
@@ -59,7 +44,6 @@ The Web Server (IIS) role is installed on AtlasAD to provide an internal website
 
 <p><sub><strong>Screenshot 042 - IIS Role Installation:</strong> The Web Server role is selected on the internal Atlas Windows server.</sub></p>
 
-
 ---
 
 ### Step 02 - Understand and use the loopback address
@@ -71,7 +55,6 @@ The default IIS page is opened through `127.0.0.1` on the Atlas server. The IPv4
 ![Local IIS validation](../../images/06-virtual-ip-and-iis-portal-publishing/02.png)
 
 <p><sub><strong>Screenshot 043 - Local IIS Validation:</strong> The IIS default page responds on the server's loopback address.</sub></p>
-
 
 ---
 
@@ -85,7 +68,6 @@ The Virtual IP object maps the FortiGate WAN address to the private Atlas server
 
 <p><sub><strong>Screenshot 044 - Destination NAT Object:</strong> The Virtual IP maps external traffic to the internal IIS server.</sub></p>
 
-
 ---
 
 ### Step 04 - Permit inbound web traffic
@@ -97,7 +79,6 @@ A WAN-to-LAN policy uses the website VIP as its destination and allows the confi
 ![Inbound IIS policy](../../images/06-virtual-ip-and-iis-portal-publishing/04.png)
 
 <p><sub><strong>Screenshot 045 - Inbound Web Policy:</strong> The WAN-to-LAN rule references the website VIP and permits the configured web-access services.</sub></p>
-
 
 ---
 
@@ -111,14 +92,11 @@ The IIS page is opened from outside the server by using the FortiGate external a
 
 <p><sub><strong>Screenshot 046 - External IIS Access:</strong> The internal IIS portal is reachable through the FortiGate WAN address and destination NAT configuration.</sub></p>
 
-
 ---
 
-## Validation
+## Validation and Summary
 
 Validation is layered: IIS responds locally through loopback first, then the same portal responds through the FortiGate WAN address. This separates application readiness from the destination NAT and inbound firewall-policy path.
-
-## Chapter Summary
 
 This chapter completes the internal-service publishing workflow. The evidence shows IIS working locally first, then reachable through the FortiGate external address after the Virtual IP and WAN-to-LAN policy are applied.
 
@@ -126,19 +104,20 @@ This chapter completes the internal-service publishing workflow. The evidence sh
 
 ## Project Chapters
 
-| Chapter | Description |
-|---------|-------------|
-| [Project Overview](../../README.md) | Main project overview, network topology, scope, and outcomes |
-| [Administrator Access and Role-Based Control](../01-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
-| [FortiGate Password Policy Hardening](../02-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
-| [LDAP Integration and SSL VPN Tunnel Mode](../03-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
-| [SSL VPN Web Mode](../04-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
-| [IIS Publishing with Destination NAT](../05-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
-| [Site-to-Site IPsec VPN](../06-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
-| [Full SSL/TLS Inspection](../07-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
-| [Web Filtering](../08-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
-| [DNS Filtering](../09-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
-| [Antivirus Inspection](../10-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
-| [Intrusion Prevention](../11-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
-| [Application Control and Quarantine](../12-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
-| [Final Summary](../13-final-summary/README.md) | Validation results, recommendations, limitations, and portfolio outcomes |
+| # | Chapter | Description |
+|---|---------|-------------|
+| 0 | [Project Overview](../../README.md) | Main project overview, objectives, tools, and skills |
+| 1 | [Topology and Lab Environment](../01-topology-and-lab-environment/README.md) | Topology, lab roles, addressing, trust boundaries, and traffic flow |
+| 2 | [Administrator Access and Role-Based Control](../02-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
+| 3 | [FortiGate Password Policy Hardening](../03-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
+| 4 | [LDAP Integration and SSL VPN Tunnel Mode](../04-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
+| 5 | [SSL VPN Web Mode](../05-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
+| 6 | [IIS Publishing with Destination NAT](../06-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
+| 7 | [Site-to-Site IPsec VPN](../07-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
+| 8 | [Full SSL/TLS Inspection](../08-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
+| 9 | [Web Filtering](../09-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
+| 10 | [DNS Filtering](../10-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
+| 11 | [Antivirus Inspection](../11-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
+| 12 | [Intrusion Prevention](../12-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
+| 13 | [Application Control and Quarantine](../13-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
+| 14 | [Final Summary](../14-final-summary/README.md) | Validation summary, production recommendations, skills, and project closure |

@@ -2,11 +2,6 @@
 
 This chapter documents FortiGate administrator role design. It shows how named accounts and restricted profiles reduce unnecessary privilege while preserving the access needed for monitoring, support, and controlled administration.
 
----
-
-## Purpose
-
-Create named FortiGate administrator identities and restrict administrative capabilities so operational access is tied to role, responsibility, and auditability.
 
 ## Technical Context
 
@@ -32,17 +27,6 @@ This design makes the administrative plane part of the security architecture. Fi
 | Named administrator | A unique admin identity used for accountability instead of shared privileged access. |
 | Read-only access | Permission to inspect configuration and logs without changing the firewall state. |
 
-## Steps Covered
-
-| Step | Description |
-|------|-------------|
-| Create a restricted administrator profile | A custom profile named Special Admin Profile is created under the FortiGate administrator profile settings. |
-| Create a named administrator account | The named account Special Admin is created and assigned to Special Admin Profile . |
-| Review the restricted administrator interface | After signing in with Special Admin , several parts of the interface are reviewed. |
-| Create a new IT administrator group and profile | The IT team is represented by an IT Group administrator profile. |
-| Create three IT administrators | Three named administrator accounts are created and assigned to IT Group . |
-| Validate read-only IT access | An IT administrator session is opened to verify the final result. |
-
 ---
 
 ## Detailed Walkthrough
@@ -57,7 +41,6 @@ A custom profile named `Special_Admin_Profile` is created under the FortiGate ad
 
 <p><sub><strong>Screenshot 005 - Restricted Administrator Profile:</strong> The custom profile is created with selected read, read-write, and hidden access permissions.</sub></p>
 
-
 ---
 
 ### Step 02 - Create a named administrator account
@@ -69,7 +52,6 @@ The named account `Special_Admin` is created and assigned to `Special_Admin_Prof
 ![Named administrator account](../../images/02-user-management-and-rbac/02.png)
 
 <p><sub><strong>Screenshot 006 - Named Administrator Account:</strong> `Special_Admin` is assigned to `Special_Admin_Profile` during account creation.</sub></p>
-
 
 ---
 
@@ -91,7 +73,6 @@ After signing in with `Special_Admin`, several parts of the interface are review
 
 <p><sub><strong>Screenshot 009 - Restricted Security Profiles Menu:</strong> The delegated account sees only the permitted SSL/SSH Inspection entry under Security Profiles.</sub></p>
 
-
 ---
 
 ### Step 04 - Create a new IT administrator group and profile
@@ -104,7 +85,6 @@ The IT team is represented by an `IT_Group` administrator profile. Its permissio
 
 <p><sub><strong>Screenshot 010 - IT Read-Only Profile:</strong> The `IT_Group` profile is configured with view-only access to the required operational sections.</sub></p>
 
-
 ---
 
 ### Step 05 - Create three IT administrators
@@ -116,7 +96,6 @@ Three named administrator accounts are created and assigned to `IT_Group`. Reusi
 ![IT administrator accounts](../../images/02-user-management-and-rbac/05.png)
 
 <p><sub><strong>Screenshot 011 - IT Administrator Membership:</strong> Three IT administrator accounts are listed with the shared `IT_Group` profile.</sub></p>
-
 
 ---
 
@@ -134,14 +113,11 @@ An IT administrator session is opened to verify the final result. Only the appro
 
 <p><sub><strong>Screenshot 013 - Read-Only IT Session:</strong> The restricted interface confirms that the IT account can view approved information without unrestricted write access.</sub></p>
 
-
 ---
 
-## Validation
+## Validation and Summary
 
 The delegated-access checks are validated by signing in with the restricted accounts and reviewing the visible menus and read-only areas. This confirms that the profiles are not only configured but also affect the active administrator sessions.
-
-## Chapter Summary
 
 This chapter establishes the administrative access model for the lab. The screenshots validate both the profile configuration and the restricted administrator experience, which makes the later firewall changes easier to audit and control.
 
@@ -149,19 +125,20 @@ This chapter establishes the administrative access model for the lab. The screen
 
 ## Project Chapters
 
-| Chapter | Description |
-|---------|-------------|
-| [Project Overview](../../README.md) | Main project overview, network topology, scope, and outcomes |
-| [Administrator Access and Role-Based Control](../01-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
-| [FortiGate Password Policy Hardening](../02-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
-| [LDAP Integration and SSL VPN Tunnel Mode](../03-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
-| [SSL VPN Web Mode](../04-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
-| [IIS Publishing with Destination NAT](../05-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
-| [Site-to-Site IPsec VPN](../06-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
-| [Full SSL/TLS Inspection](../07-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
-| [Web Filtering](../08-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
-| [DNS Filtering](../09-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
-| [Antivirus Inspection](../10-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
-| [Intrusion Prevention](../11-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
-| [Application Control and Quarantine](../12-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
-| [Final Summary](../13-final-summary/README.md) | Validation results, recommendations, limitations, and portfolio outcomes |
+| # | Chapter | Description |
+|---|---------|-------------|
+| 0 | [Project Overview](../../README.md) | Main project overview, objectives, tools, and skills |
+| 1 | [Topology and Lab Environment](../01-topology-and-lab-environment/README.md) | Topology, lab roles, addressing, trust boundaries, and traffic flow |
+| 2 | [Administrator Access and Role-Based Control](../02-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
+| 3 | [FortiGate Password Policy Hardening](../03-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
+| 4 | [LDAP Integration and SSL VPN Tunnel Mode](../04-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
+| 5 | [SSL VPN Web Mode](../05-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
+| 6 | [IIS Publishing with Destination NAT](../06-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
+| 7 | [Site-to-Site IPsec VPN](../07-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
+| 8 | [Full SSL/TLS Inspection](../08-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
+| 9 | [Web Filtering](../09-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
+| 10 | [DNS Filtering](../10-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
+| 11 | [Antivirus Inspection](../11-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
+| 12 | [Intrusion Prevention](../12-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
+| 13 | [Application Control and Quarantine](../13-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
+| 14 | [Final Summary](../14-final-summary/README.md) | Validation summary, production recommendations, skills, and project closure |

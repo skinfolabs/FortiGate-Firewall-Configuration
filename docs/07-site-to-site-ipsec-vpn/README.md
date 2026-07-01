@@ -2,11 +2,6 @@
 
 This chapter documents FortiGate-to-FortiGate IPsec connectivity with directional service restrictions. It shows that an encrypted tunnel and a least-privilege inter-site policy are related but separate security controls.
 
----
-
-## Purpose
-
-Build an encrypted site-to-site VPN and show that the tunnel transport and directional firewall policies are separate security decisions.
 
 ## Technical Context
 
@@ -37,19 +32,6 @@ Production recommendation: the visible Tel Aviv-to-New York policy still shows `
 | Protected networks | The local and remote subnets allowed to use the site-to-site tunnel. |
 | Directional policy | A firewall rule that permits a specific service in one direction without automatically allowing the reverse. |
 
-## Steps Covered
-
-| Step | Description |
-|------|-------------|
-| Start the FortiGate-to-FortiGate tunnel | The IPsec wizard is opened and the FortiGate to FortiGate site to site option is selected. |
-| Configure the remote gateway and PSK | The Tel Aviv WAN address 13.82.92.101 is entered as the remote gateway, Port1 is selected as the outgoing interface, and both peers are configured with the same pre shared key. |
-| Define the protected networks | The New York networks 10.90.1.0/24 and 10.90.11.0/24 are paired with the Tel Aviv networks 10.74.1.0/24 and 10.74.11.0/24 . |
-| Confirm the tunnel state | After both peers complete their configuration, the IPsec monitor is opened to review the tunnel and Phase 2 state. |
-| Limit New York-to-Tel Aviv traffic to ping | The New York to Tel Aviv policy is restricted to the PING service. |
-| Review the Tel Aviv-to-New York RDP rule | The reverse policy is intended to permit Tel Aviv users to reach New York systems only with RDP. |
-| Validate cross-site access | The two sides test the intended services after the tunnel is established. |
-| Compare validation from the remote site | The remote side screenshots provide the opposite perspective of the same VPN. |
-
 ---
 
 ## Detailed Walkthrough
@@ -64,7 +46,6 @@ The IPsec wizard is opened and the FortiGate-to-FortiGate site-to-site option is
 
 <p><sub><strong>Screenshot 047 - Site-to-Site IPsec Wizard:</strong> A FortiGate-to-FortiGate VPN is selected for the two-site connection.</sub></p>
 
-
 ---
 
 ### Step 02 - Configure the remote gateway and PSK
@@ -76,7 +57,6 @@ The Tel Aviv WAN address `13.82.92.101` is entered as the remote gateway, `Port1
 ![IPsec peer settings](../../images/07-site-to-site-ipsec-vpn/02.png)
 
 <p><sub><strong>Screenshot 048 - IPsec Peer and PSK Settings:</strong> The remote FortiGate WAN address, outgoing interface, and pre-shared key are configured.</sub></p>
-
 
 ---
 
@@ -90,7 +70,6 @@ The New York networks `10.90.1.0/24` and `10.90.11.0/24` are paired with the Tel
 
 <p><sub><strong>Screenshot 049 - IPsec Network Selectors:</strong> The New York and Tel Aviv private subnets are entered as the local and remote protected networks.</sub></p>
 
-
 ---
 
 ### Step 04 - Confirm the tunnel state
@@ -102,7 +81,6 @@ After both peers complete their configuration, the IPsec monitor is opened to re
 ![IPsec VPN monitor](../../images/07-site-to-site-ipsec-vpn/04.png)
 
 <p><sub><strong>Screenshot 050 - IPsec Tunnel Monitor:</strong> The site-to-site VPN appears in the FortiGate monitor with its negotiated tunnel state.</sub></p>
-
 
 ---
 
@@ -116,7 +94,6 @@ The New York-to-Tel Aviv policy is restricted to the `PING` service. ICMP echo t
 
 <p><sub><strong>Screenshot 051 - New York to Tel Aviv Ping Policy:</strong> The directional IPsec policy explicitly allows the PING service.</sub></p>
 
-
 ---
 
 ### Step 06 - Review the Tel Aviv-to-New York RDP rule
@@ -129,7 +106,6 @@ The reverse policy is intended to permit Tel Aviv users to reach New York system
 
 <p><sub><strong>Screenshot 052 - Tel Aviv to New York RDP Rule:</strong> RDP is selected in the service picker, while the policy field still shows `ALL` and therefore requires a final correction.</sub></p>
 
-
 ---
 
 ### Step 07 - Validate cross-site access
@@ -141,7 +117,6 @@ The two sides test the intended services after the tunnel is established. The co
 ![IPsec traffic validation](../../images/07-site-to-site-ipsec-vpn/07.png)
 
 <p><sub><strong>Screenshot 053 - Cross-Site Service Validation:</strong> Command-line and RDP tests are performed after the IPsec policies are applied.</sub></p>
-
 
 ---
 
@@ -159,14 +134,11 @@ The remote-side screenshots provide the opposite perspective of the same VPN. Th
 
 <p><sub><strong>Screenshot 055 - Blocked Reverse Ping:</strong> ICMP requests time out from the direction where the policy does not permit ping.</sub></p>
 
-
 ---
 
-## Validation
+## Validation and Summary
 
 Validation includes the negotiated tunnel state, allowed service tests, RDP behavior, and a denied reverse-ping result. The screenshots confirm the lab goal while also documenting the service-field issue that should be corrected for a production least-privilege rule.
-
-## Chapter Summary
 
 This chapter completes the site-to-site VPN workflow. The evidence confirms tunnel negotiation and service testing, while the visible `ALL` service field in the reverse policy remains a documented hardening item before production use.
 
@@ -174,19 +146,20 @@ This chapter completes the site-to-site VPN workflow. The evidence confirms tunn
 
 ## Project Chapters
 
-| Chapter | Description |
-|---------|-------------|
-| [Project Overview](../../README.md) | Main project overview, network topology, scope, and outcomes |
-| [Administrator Access and Role-Based Control](../01-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
-| [FortiGate Password Policy Hardening](../02-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
-| [LDAP Integration and SSL VPN Tunnel Mode](../03-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
-| [SSL VPN Web Mode](../04-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
-| [IIS Publishing with Destination NAT](../05-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
-| [Site-to-Site IPsec VPN](../06-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
-| [Full SSL/TLS Inspection](../07-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
-| [Web Filtering](../08-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
-| [DNS Filtering](../09-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
-| [Antivirus Inspection](../10-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
-| [Intrusion Prevention](../11-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
-| [Application Control and Quarantine](../12-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
-| [Final Summary](../13-final-summary/README.md) | Validation results, recommendations, limitations, and portfolio outcomes |
+| # | Chapter | Description |
+|---|---------|-------------|
+| 0 | [Project Overview](../../README.md) | Main project overview, objectives, tools, and skills |
+| 1 | [Topology and Lab Environment](../01-topology-and-lab-environment/README.md) | Topology, lab roles, addressing, trust boundaries, and traffic flow |
+| 2 | [Administrator Access and Role-Based Control](../02-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
+| 3 | [FortiGate Password Policy Hardening](../03-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
+| 4 | [LDAP Integration and SSL VPN Tunnel Mode](../04-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
+| 5 | [SSL VPN Web Mode](../05-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
+| 6 | [IIS Publishing with Destination NAT](../06-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
+| 7 | [Site-to-Site IPsec VPN](../07-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
+| 8 | [Full SSL/TLS Inspection](../08-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
+| 9 | [Web Filtering](../09-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
+| 10 | [DNS Filtering](../10-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
+| 11 | [Antivirus Inspection](../11-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
+| 12 | [Intrusion Prevention](../12-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
+| 13 | [Application Control and Quarantine](../13-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
+| 14 | [Final Summary](../14-final-summary/README.md) | Validation summary, production recommendations, skills, and project closure |

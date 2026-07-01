@@ -2,11 +2,6 @@
 
 This chapter documents Intrusion Prevention using an IPS sensor, controlled test traffic, and dropped-event validation. It distinguishes a generic connection failure from a FortiGate decision backed by an IPS log entry.
 
----
-
-## Purpose
-
-Use an inline IPS profile to detect and drop matching attack-pattern traffic after the base firewall policy accepts the network flow.
 
 ## Technical Context
 
@@ -33,15 +28,6 @@ The `Office_IPS_Profile` sensor is attached to the outbound policy and tested fr
 | Botnet/C2 protection | Controls intended to identify traffic associated with infected hosts or command infrastructure. |
 | Drop action | The firewall response that interrupts a matching session instead of only logging it. |
 
-## Steps Covered
-
-| Step | Description |
-|------|-------------|
-| Create the IPS sensor | The Office IPS Profile sensor is created under Security Profiles and botnet C&C blocking is enabled. |
-| Apply IPS to the outbound policy | Office IPS Profile is enabled on the outbound firewall rule used by the workstation. |
-| Generate and observe a controlled IPS test | The workstation attempts to reach the controlled test destination and the browser connection times out. |
-| Confirm the IPS drop in logs | The IPS log records the Bloody.Gang signature and a dropped action for the controlled test traffic. |
-
 ---
 
 ## Detailed Walkthrough
@@ -56,7 +42,6 @@ The `Office_IPS_Profile` sensor is created under Security Profiles and botnet C&
 
 <p><sub><strong>Screenshot 076 - Office IPS Sensor:</strong> The custom IPS profile is created with botnet command-and-control blocking enabled.</sub></p>
 
-
 ---
 
 ### Step 02 - Apply IPS to the outbound policy
@@ -68,7 +53,6 @@ The `Office_IPS_Profile` sensor is created under Security Profiles and botnet C&
 ![IPS policy attachment](../../images/12-ips-profile/02.png)
 
 <p><sub><strong>Screenshot 077 - IPS Policy Attachment:</strong> `Office_IPS_Profile` is enabled on the outbound traffic rule.</sub></p>
-
 
 ---
 
@@ -82,7 +66,6 @@ The workstation attempts to reach the controlled test destination and the browse
 
 <p><sub><strong>Screenshot 078 - IPS Client-Side Timeout:</strong> The test connection does not complete after the IPS profile is applied.</sub></p>
 
-
 ---
 
 ### Step 04 - Confirm the IPS drop in logs
@@ -95,14 +78,11 @@ The IPS log records the `Bloody.Gang` signature and a dropped action for the con
 
 <p><sub><strong>Screenshot 079 - IPS Detection Logs:</strong> FortiGate records and drops the controlled traffic that matched the IPS signature.</sub></p>
 
-
 ---
 
-## Validation
+## Validation and Summary
 
 Validation links the client timeout to a FortiGate IPS log entry showing the detected signature and drop action. This distinguishes IPS enforcement from a generic connectivity failure.
-
-## Chapter Summary
 
 This chapter completes the IPS workflow. The evidence links the client timeout to a FortiGate IPS signature and drop action, which is the key proof that the prevention control handled the test traffic.
 
@@ -110,19 +90,20 @@ This chapter completes the IPS workflow. The evidence links the client timeout t
 
 ## Project Chapters
 
-| Chapter | Description |
-|---------|-------------|
-| [Project Overview](../../README.md) | Main project overview, network topology, scope, and outcomes |
-| [Administrator Access and Role-Based Control](../01-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
-| [FortiGate Password Policy Hardening](../02-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
-| [LDAP Integration and SSL VPN Tunnel Mode](../03-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
-| [SSL VPN Web Mode](../04-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
-| [IIS Publishing with Destination NAT](../05-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
-| [Site-to-Site IPsec VPN](../06-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
-| [Full SSL/TLS Inspection](../07-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
-| [Web Filtering](../08-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
-| [DNS Filtering](../09-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
-| [Antivirus Inspection](../10-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
-| [Intrusion Prevention](../11-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
-| [Application Control and Quarantine](../12-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
-| [Final Summary](../13-final-summary/README.md) | Validation results, recommendations, limitations, and portfolio outcomes |
+| # | Chapter | Description |
+|---|---------|-------------|
+| 0 | [Project Overview](../../README.md) | Main project overview, objectives, tools, and skills |
+| 1 | [Topology and Lab Environment](../01-topology-and-lab-environment/README.md) | Topology, lab roles, addressing, trust boundaries, and traffic flow |
+| 2 | [Administrator Access and Role-Based Control](../02-administrator-access-and-rbac/README.md) | Named administrator accounts, custom admin profiles, and least-privilege validation |
+| 3 | [FortiGate Password Policy Hardening](../03-password-policy-hardening/README.md) | Local password complexity controls for administrators and IPsec pre-shared keys |
+| 4 | [LDAP Integration and SSL VPN Tunnel Mode](../04-ldap-and-ssl-vpn-tunnel-mode/README.md) | Active Directory LDAP integration, SSL VPN Tunnel Mode, FortiClient access, and restricted RDP validation |
+| 5 | [SSL VPN Web Mode](../05-ssl-vpn-web-mode/README.md) | Browser-based SSL VPN access with LDAP group mapping and an RDP bookmark |
+| 6 | [IIS Publishing with Destination NAT](../06-iis-publishing-with-destination-nat/README.md) | Internal IIS publishing through a FortiGate Virtual IP and inbound firewall policy |
+| 7 | [Site-to-Site IPsec VPN](../07-site-to-site-ipsec-vpn/README.md) | FortiGate-to-FortiGate IPsec connectivity with directional service restrictions |
+| 8 | [Full SSL/TLS Inspection](../08-full-ssl-tls-inspection/README.md) | Full SSL/TLS inspection profile creation and outbound policy attachment |
+| 9 | [Web Filtering](../09-web-filtering/README.md) | Static URL filtering, category authentication, client testing, and FortiGate web-filter logs |
+| 10 | [DNS Filtering](../10-dns-filtering/README.md) | DNS filter profile configuration, controlled domain blocking, and DNS-filter log review |
+| 11 | [Antivirus Inspection](../11-antivirus-inspection/README.md) | Flow-based antivirus profile deployment and safe test-sample validation |
+| 12 | [Intrusion Prevention](../12-intrusion-prevention/README.md) | IPS sensor deployment, controlled test traffic, and dropped-event validation |
+| 13 | [Application Control and Quarantine](../13-application-control-and-quarantine/README.md) | Application signature blocking, TeamViewer validation, and a temporary quarantine workflow |
+| 14 | [Final Summary](../14-final-summary/README.md) | Validation summary, production recommendations, skills, and project closure |
